@@ -1,0 +1,63 @@
+@use "utils/mixins/colors";
+
+.button {
+  border-radius: 5px;
+  outline: none;
+  margin: 10px 0;
+  cursor: pointer;
+  font-weight: 600;
+  font-family: "roc-grotesk", sans-serif;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  &--primary {
+    border: 5px solid colors.$sage-green;
+    background: transparent;
+    border-radius: 50px;
+    color: colors.$sage-green;
+    transition: transform 0.2s;
+    font-size: 24px;
+    font-weight: bolder;
+    padding: 7px 36px;
+
+    &:enabled:active {
+      transform: scale(0.9);
+    }
+
+    &:hover {
+      background: colors.$sage-green;
+      color: colors.$white;
+    }
+
+    &:hover:disabled {
+      background: transparent;
+      color: colors.$sage-green;
+    }
+  }
+
+  &--secondary {
+    border: none;
+    background: transparent;
+    font-size: 20px;
+    color: colors.$black;
+    padding: 0 5px;
+  }
+
+  &--link {
+    background: none;
+    border: none;
+    padding: 0;
+    text-decoration: underline;
+    font-weight: 300;
+    font-size: 14px;
+    color: colors.$black;
+  }
+}
+
+.active {
+  box-shadow: 0px 0px colors.$sage-green;
+  transform: translate(2px, 2px);
+}
