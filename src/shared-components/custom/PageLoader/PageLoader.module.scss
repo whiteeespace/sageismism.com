@@ -1,0 +1,11 @@
+.container {
+  position: fixed;
+  display: flex;
+  top: 0px;
+  left: 0;
+  width: 100dvw;
+  height: 100dvh;
+  justify-content: center;
+  align-items: center;
+  overscroll-behavior-y: none;
+}

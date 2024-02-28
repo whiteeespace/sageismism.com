@@ -1,4 +1,3 @@
-import { CartProvider } from "@shopify/hydrogen-react";
 import { RouterProvider } from "react-router-dom";
 import { router } from "RootRouter";
 import { WhiteeeShopifyProvider } from "whiteeespace";
@@ -10,9 +9,7 @@ const Root = () => (
     countryCode="CA"
     languageCode="EN"
   >
-    <CartProvider>
-      <RouterProvider router={router} />
-    </CartProvider>
+    <RouterProvider router={router} />
   </WhiteeeShopifyProvider>
 );
 

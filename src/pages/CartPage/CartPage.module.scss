@@ -1,0 +1,115 @@
+@use "utils/mixins/colors";
+
+.container {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  grid-template-rows: 1fr 1fr;
+
+  grid-template-areas:
+    "images items"
+    "images actions"
+    "shipping shipping";
+
+  height: 100%;
+
+  @media only screen and (max-width: 848px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+
+    grid-template-areas:
+      "items"
+      "images"
+      "actions"
+      "shipping";
+  }
+
+  .cart-images {
+    grid-area: images;
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    @media only screen and (max-width: 848px) {
+      height: 400px;
+    }
+  }
+
+  .cart-items {
+    grid-area: items;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin: 0 24px 0;
+
+    @media only screen and (max-width: 848px) {
+      margin-top: 60px;
+    }
+
+    .title {
+      text-transform: uppercase;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .lines {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 12px;
+      margin-top: 16px;
+
+      .line {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        .close {
+          display: flex;
+          margin: 0;
+          padding: 0 0 4px 0;
+        }
+      }
+    }
+  }
+
+  .cart-actions {
+    grid-area: actions;
+    align-self: flex-end;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin: 0 12px 24px 0;
+
+    .price {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-right: 12px;
+
+      .amount {
+        font-size: 24px;
+        font-weight: 600;
+      }
+    }
+
+    .button-container {
+      display: flex;
+      column-gap: 16px;
+      row-gap: 0px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+  }
+
+  .free-shipping {
+    grid-area: shipping;
+    justify-self: flex-end;
+    margin: 0 24px 60px 0;
+    text-align: right;
+    line-height: 32px;
+
+    @media only screen and (max-width: 848px) {
+      margin: 0 24px 60px 0;
+    }
+  }
+}

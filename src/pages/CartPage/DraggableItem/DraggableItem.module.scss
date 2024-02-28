@@ -1,0 +1,8 @@
+.image-container {
+  position: absolute;
+  cursor: pointer;
+
+  &:active {
+    cursor: grabbing;
+  }
+}

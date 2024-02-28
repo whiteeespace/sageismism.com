@@ -1,12 +1,7 @@
 .container {
   position: relative;
   padding: 0 20px;
-
-  .content {
-    min-height: calc(100dvh - 248px);
-
-    @media only screen and (max-width: 656px) {
-      min-height: calc(100dvh - 262px);
-    }
-  }
+  display: grid;
+  min-height: 100dvh;
+  grid-template-rows: min-content auto min-content;
 }

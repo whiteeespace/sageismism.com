@@ -7,6 +7,7 @@
   cursor: pointer;
   font-weight: 600;
   font-family: "roc-grotesk", sans-serif;
+  width: fit-content;
 
   &:disabled {
     cursor: not-allowed;
@@ -21,7 +22,12 @@
     transition: transform 0.2s;
     font-size: 24px;
     font-weight: bolder;
-    padding: 7px 36px;
+    padding: 7px 60px;
+    white-space: nowrap;
+
+    @media only screen and (max-width: 848px) {
+      padding: 7px 32px;
+    }
 
     &:enabled:active {
       transform: scale(0.9);

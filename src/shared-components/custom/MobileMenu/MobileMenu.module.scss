@@ -1,0 +1,88 @@
+@use "utils/mixins/colors";
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: black;
+  opacity: 0.3;
+}
+
+.panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  max-height: 100%;
+  z-index: 1200;
+
+  background-color: white;
+  box-shadow:
+    rgba(0, 0, 0, 0.2) 0px 8px 10px -5px,
+    rgba(0, 0, 0, 0.14) 0px 16px 24px 2px,
+    rgba(0, 0, 0, 0.12) 0px 6px 30px 5px;
+
+  padding: 24px 2em 32px 2em;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: min-content min-content;
+  grid-template-areas:
+    "logo navigation"
+    "links links";
+
+  &--animate {
+    transition: all 0.3s ease-out;
+  }
+
+  &--animate-from {
+    opacity: 0.5;
+    transform: translateY(-100%);
+  }
+
+  &--animate-to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .logos {
+    grid-area: logo;
+
+    .logo {
+      height: 100px;
+    }
+  }
+
+  .navigation {
+    grid-area: navigation;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 18px;
+  }
+
+  .links {
+    grid-area: links;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 32px;
+  }
+}
+
+.link {
+  color: colors.$sage-green;
+
+  &--text {
+    font-weight: bold;
+    font-size: 20px;
+    margin: 0;
+  }
+
+  &--sub-text {
+    font-weight: bold;
+    font-size: 14px;
+    margin: 0;
+  }
+}

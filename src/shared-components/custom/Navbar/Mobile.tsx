@@ -1,30 +1,22 @@
 import classNames from "classnames";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import Button from "shared-components/core/Button";
 
+import { MenuItem } from ".";
 import styles from "./Navbar.module.scss";
-
-interface MenuItem {
-  title: string;
-  to: string;
-  disabled?: boolean;
-}
+import Cart from "../Cart";
+import { MobileMenu } from "../MobileMenu";
 
 interface Props {
   menuItems: MenuItem[];
 }
 
-export const MobileNavbar: React.FC<Props> = () => {
+export const MobileNavbar: React.FC<Props> = ({ menuItems }) => {
   return (
     <div className={styles["header-mobile"]}>
       <div className={styles["button-container"]}>
-        <Button variant="secondary" className={styles["menu-button"]}>
-          menu
-        </Button>
-        <Button variant="secondary" className={styles["menu-button"]}>
-          cart
-        </Button>
+        <MobileMenu menuItems={menuItems} className={styles["menu-button"]} />
+        <Cart className={styles["menu-button"]} />
       </div>
       <Link className={styles["shop-link"]} to={"/"}>
         <motion.img

@@ -14,15 +14,15 @@ const Footer: React.FC = () => {
       <div className={styles["details"]}>
         {!isMobile && (
           <>
-            <Link className={styles["link"]} to="/contact">
+            {/* <Link className={styles["link"]} to="/contact">
               contact us
-            </Link>
-            <Link className={styles["link"]} to="/terms">
+            </Link> */}
+            <Link className={styles["link"]} to="/policies">
               terms & conditions
             </Link>
           </>
         )}
-        <a href="https://www.instagram.com/sageismism/" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.instagram.com/sageismism/" target="_blank">
           <p className={styles["link"]}>instagram</p>
         </a>
       </div>

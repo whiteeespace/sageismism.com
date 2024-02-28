@@ -19,7 +19,6 @@ const ShopPage = () => {
   }
 
   const products = flattenConnection(productData?.collection?.products);
-  console.log(products);
 
   return (
     <div className={classNames(styles["container"])}>

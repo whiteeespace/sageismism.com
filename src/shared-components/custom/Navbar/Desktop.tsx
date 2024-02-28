@@ -2,13 +2,9 @@ import classNames from "classnames";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "shared-components/core/Button";
 
+import { MenuItem } from ".";
 import styles from "./Navbar.module.scss";
-
-interface MenuItem {
-  title: string;
-  to: string;
-  disabled?: boolean;
-}
+import Cart from "../Cart";
 
 interface Props {
   menuItems: MenuItem[];
@@ -41,6 +37,7 @@ export const DesktopNavbar: React.FC<Props> = ({ menuItems }) => {
             <div className={styles["menu-item"]}>{menuItem.title}</div>
           </Button>
         ))}
+        <Cart className={styles["menu-item"]} />
       </div>
     </div>
   );

@@ -5,10 +5,15 @@ import { MobileNavbar } from "./Mobile";
 
 const MENU = [
   { title: "shop", to: "/shop" },
-  { title: "lookbook", to: "/lookbook" },
+  { title: "lookbooks", to: "/lookbooks" },
   { title: "stockists", to: "/stockists" },
-  { title: "cart", to: "/cart" },
 ];
+
+export interface MenuItem {
+  title: string;
+  to: string;
+  disabled?: boolean;
+}
 
 const Navbar = () => {
   const { isTabletOrMobile } = useWindowView();
