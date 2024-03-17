@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { flattenConnection } from "@shopify/hydrogen-react";
+import { flattenConnection } from "@whiteeespace/core";
 import { motion } from "framer-motion";
 import { GetLookbookListQuery } from "gql/graphql";
 import { GET_LOOKBOOK_LIST } from "queries/get-lookbook-list";

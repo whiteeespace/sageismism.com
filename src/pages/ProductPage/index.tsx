@@ -1,5 +1,14 @@
 import { useQuery } from "@apollo/client";
-import { ProductPrice, flattenConnection } from "@shopify/hydrogen-react";
+import {
+  Image,
+  Model3D,
+  useWindowView,
+  AddToCartButton,
+  ProductProvider,
+  useProduct,
+  ProductPrice,
+  flattenConnection,
+} from "@whiteeespace/core";
 import { GetProductQuery, GetProductQueryVariables, ProductVariant } from "gql/graphql";
 import { GET_PRODUCT } from "queries/get-product";
 import { Fragment, useState } from "react";
@@ -7,7 +16,6 @@ import { useParams } from "react-router-dom";
 import Button from "shared-components/core/Button";
 import { ProductSizes, Size } from "shared-components/core/Sizes";
 import { Gender } from "utils/types/gender";
-import { Image, Model3D, useWindowView, AddToCartButton, ProductProvider, useProduct } from "whiteeespace";
 
 import DetailsDialog from "./DetailsDialog";
 import styles from "./ProductPage.module.scss";

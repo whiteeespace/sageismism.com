@@ -1,6 +1,6 @@
+import { useCart } from "@whiteeespace/core";
 import { useNavigate } from "react-router-dom";
 import Button from "shared-components/core/Button";
-import { useCart } from "whiteeespace";
 
 import styles from "./Cart.module.scss";
 

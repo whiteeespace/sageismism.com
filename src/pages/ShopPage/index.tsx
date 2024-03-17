@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { flattenConnection } from "@shopify/hydrogen-react";
+import { flattenConnection } from "@whiteeespace/core";
 import classNames from "classnames";
 import { GetCollectionQuery, GetCollectionQueryVariables } from "gql/graphql";
 import { GET_COLLECTION } from "queries/get-collection";

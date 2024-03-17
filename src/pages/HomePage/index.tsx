@@ -1,3 +1,4 @@
+import { useWindowView } from "@whiteeespace/core";
 import { disableBodyScroll, clearAllBodyScrollLocks } from "body-scroll-lock";
 import { motion } from "framer-motion";
 import _ from "lodash";
@@ -5,7 +6,6 @@ import { useEffect, useRef, useState, TouchEvent, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import * as THREE from "three";
 import { seededRandom } from "three/src/math/MathUtils";
-import { useWindowView } from "whiteeespace";
 
 import styles from "./HomePage.module.scss";
 

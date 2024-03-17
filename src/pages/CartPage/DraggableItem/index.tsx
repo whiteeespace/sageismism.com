@@ -1,7 +1,7 @@
+import { Image, useWindowView } from "@whiteeespace/core";
 import { motion } from "framer-motion";
 import { useMemo } from "react";
 import Draggable from "react-draggable";
-import { Image, useWindowView } from "whiteeespace";
 
 import styles from "./DraggableItem.module.scss";
 

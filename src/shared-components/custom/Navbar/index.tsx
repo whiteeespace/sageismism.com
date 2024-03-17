@@ -1,4 +1,4 @@
-import { useWindowView } from "whiteeespace";
+import { useWindowView } from "@whiteeespace/core";
 
 import { DesktopNavbar } from "./Desktop";
 import { MobileNavbar } from "./Mobile";

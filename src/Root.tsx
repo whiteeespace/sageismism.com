@@ -1,6 +1,6 @@
+import { WhiteeeShopifyProvider } from "@whiteeespace/core";
 import { RouterProvider } from "react-router-dom";
 import { router } from "RootRouter";
-import { WhiteeeShopifyProvider } from "whiteeespace";
 
 const Root = () => (
   <WhiteeeShopifyProvider

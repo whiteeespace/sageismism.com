@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { flattenConnection } from "@shopify/hydrogen-react";
+import { flattenConnection } from "@whiteeespace/core";
 import classNames from "classnames";
 import { motion, useInView, useAnimation } from "framer-motion";
 import { GetLookbookQuery, GetLookbookQueryVariables } from "gql/graphql";

@@ -1,16 +1,16 @@
 import { XCircle } from "@phosphor-icons/react";
-import { Money } from "@shopify/hydrogen-react";
-import { motion } from "framer-motion";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Button from "shared-components/core/Button";
 import {
   useCart,
   CartLineProvider,
   useCartLine,
   CartCheckoutButton,
   CartLineQuantityAdjustButton,
-} from "whiteeespace";
+  Money,
+} from "@whiteeespace/core";
+import { motion } from "framer-motion";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Button from "shared-components/core/Button";
 
 import styles from "./CartPage.module.scss";
 import DraggableItem from "./DraggableItem";

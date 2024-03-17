@@ -1,5 +1,5 @@
+import { useWindowView } from "@whiteeespace/core";
 import { Link } from "react-router-dom";
-import { useWindowView } from "whiteeespace";
 
 import styles from "./Footer.module.scss";
 
