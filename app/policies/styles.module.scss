@@ -1,0 +1,64 @@
+@use "@utils/mixins/colors";
+
+.container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  .info-column {
+    max-width: 600px;
+    width: 100%;
+    padding: 25px;
+    box-sizing: border-box;
+
+    .group {
+      margin: 100px 0px;
+      .label {
+        font-size: 24px;
+        font-weight: 700;
+        color: colors.$sage-green;
+        font-weight: bold;
+        text-transform: uppercase;
+        padding: 0 8px;
+      }
+
+      .text {
+        font-size: 16px;
+        padding: 0 8px;
+        line-height: 28px;
+      }
+    }
+  }
+}
+
+.title {
+  padding: 20px 8px;
+  font-size: 48px;
+}
+
+.social-info {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+
+  @media only screen and (max-width: 390px) {
+    flex-direction: column;
+  }
+
+  .social-group {
+    .label {
+      font-size: 24px;
+      font-weight: 700;
+      color: colors.$sage-green;
+      font-weight: bold;
+      text-transform: uppercase;
+      padding: 0 8px;
+    }
+
+    .text {
+      font-size: 16px;
+      padding: 0 8px;
+      margin: 0;
+    }
+  }
+}
