@@ -1,5 +1,5 @@
 build/
 dist/
 node_modules/
-src/gql/
 .eslintrc.js
+.next.config.mjs
