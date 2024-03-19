@@ -14,12 +14,6 @@ import styles from "./styles.module.scss";
 const X_MAX = 4;
 const X_MAX_MOBILE = 80;
 
-export enum ScrollDirection {
-  UP,
-  DOWN,
-  NONE,
-}
-
 const signRandomizer = (idx: number) => (seededRandom(idx) >= 0.5 ? 1 : -1);
 
 const HomePage: React.FC = () => {

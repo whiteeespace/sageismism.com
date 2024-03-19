@@ -3,7 +3,7 @@ import { Image } from "@whiteeespace/core";
 import { Carousel } from "react-responsive-carousel";
 
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import styles from "./DetailsDialog.module.scss";
+import styles from "./styles.module.scss";
 
 interface Props {
   images: string[];
