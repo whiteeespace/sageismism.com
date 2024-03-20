@@ -748,6 +748,7 @@ export type CartBuyerIdentityInput = {
    * The rank of the preferences is determined by the order of the addresses in the array. Preferences
    * can be used to populate relevant fields in the checkout flow.
    *
+   * The input must not contain more than `250` values.
    */
   deliveryAddressPreferences?: InputMaybe<Array<DeliveryAddressInput>>;
   /** The email address of the buyer that is interacting with the cart. */
@@ -759,6 +760,7 @@ export type CartBuyerIdentityInput = {
    * Preferences can be used to populate relevant payment fields in the checkout flow.
    *   Accepted value: `["shop_pay"]`.
    *
+   * The input must not contain more than `250` values.
    */
   walletPreferences?: InputMaybe<Array<Scalars['String']['input']>>;
 };
@@ -1045,7 +1047,11 @@ export type CartFreePaymentMethodInput = {
 
 /** The input fields to create a cart. */
 export type CartInput = {
-  /** An array of key-value pairs that contains additional information about the cart. */
+  /**
+   * An array of key-value pairs that contains additional information about the cart.
+   *
+   * The input must not contain more than `250` values.
+   */
   attributes?: InputMaybe<Array<AttributeInput>>;
   /**
    * The customer associated with the cart. Used to determine [international pricing]
@@ -1057,11 +1063,20 @@ export type CartInput = {
   /**
    * The case-insensitive discount codes that the customer added at checkout.
    *
+   * The input must not contain more than `250` values.
    */
   discountCodes?: InputMaybe<Array<Scalars['String']['input']>>;
-  /** A list of merchandise lines to add to the cart. */
+  /**
+   * A list of merchandise lines to add to the cart.
+   *
+   * The input must not contain more than `250` values.
+   */
   lines?: InputMaybe<Array<CartLineInput>>;
-  /** The metafields to associate with this cart. */
+  /**
+   * The metafields to associate with this cart.
+   *
+   * The input must not contain more than `250` values.
+   */
   metafields?: InputMaybe<Array<CartInputMetafieldInput>>;
   /**
    * A note that's associated with the cart. For example, the note can be a personalized message to the buyer.
@@ -1150,7 +1165,11 @@ export type CartLineEstimatedCost = {
 
 /** The input fields to create a merchandise line on a cart. */
 export type CartLineInput = {
-  /** An array of key-value pairs that contains additional information about the merchandise line. */
+  /**
+   * An array of key-value pairs that contains additional information about the merchandise line.
+   *
+   * The input must not contain more than `250` values.
+   */
   attributes?: InputMaybe<Array<AttributeInput>>;
   /** The ID of the merchandise that the buyer intends to purchase. */
   merchandiseId: Scalars['ID']['input'];
@@ -1162,7 +1181,11 @@ export type CartLineInput = {
 
 /** The input fields to update a line item on a cart. */
 export type CartLineUpdateInput = {
-  /** An array of key-value pairs that contains additional information about the merchandise line. */
+  /**
+   * An array of key-value pairs that contains additional information about the merchandise line.
+   *
+   * The input must not contain more than `250` values.
+   */
   attributes?: InputMaybe<Array<AttributeInput>>;
   /** The ID of the merchandise line. */
   id: Scalars['ID']['input'];
@@ -1389,7 +1412,7 @@ export type Checkout = Node & {
   note?: Maybe<Scalars['String']['output']>;
   /** The resulting order from a paid checkout. */
   order?: Maybe<Order>;
-  /** The Order Status Page for this Checkout, null when checkout isn't completed. */
+  /** The <b>Order status</b> page for this Checkout, null when checkout isn't completed. */
   orderStatusUrl?: Maybe<Scalars['URL']['output']>;
   /** The amount left to be paid. This is equal to the cost of the line items, taxes, and shipping, minus discounts and gift cards. */
   paymentDue: MoneyV2;
@@ -1480,7 +1503,11 @@ export type CheckoutAttributesUpdateV2Input = {
    *
    */
   allowPartialAddresses?: InputMaybe<Scalars['Boolean']['input']>;
-  /** A list of extra information that's added to the checkout. */
+  /**
+   * A list of extra information that's added to the checkout.
+   *
+   * The input must not contain more than `250` values.
+   */
   customAttributes?: InputMaybe<Array<AttributeInput>>;
   /** The text of an optional note that a shop owner can attach to the checkout. */
   note?: InputMaybe<Scalars['String']['input']>;
@@ -1575,11 +1602,19 @@ export type CheckoutCreateInput = {
   allowPartialAddresses?: InputMaybe<Scalars['Boolean']['input']>;
   /** The identity of the customer associated with the checkout. */
   buyerIdentity?: InputMaybe<CheckoutBuyerIdentityInput>;
-  /** A list of extra information that's added to the checkout. */
+  /**
+   * A list of extra information that's added to the checkout.
+   *
+   * The input must not contain more than `250` values.
+   */
   customAttributes?: InputMaybe<Array<AttributeInput>>;
   /** The email with which the customer wants to checkout. */
   email?: InputMaybe<Scalars['String']['input']>;
-  /** A list of line item objects, each one containing information about an item in the checkout. */
+  /**
+   * A list of line item objects, each one containing information about an item in the checkout.
+   *
+   * The input must not contain more than `250` values.
+   */
   lineItems?: InputMaybe<Array<CheckoutLineItemInput>>;
   /** The text of an optional note that a shop owner can attach to the checkout. */
   note?: InputMaybe<Scalars['String']['input']>;
@@ -1846,7 +1881,11 @@ export type CheckoutLineItemEdge = {
 
 /** The input fields to create a line item on a checkout. */
 export type CheckoutLineItemInput = {
-  /** Extra information in the form of an array of Key-Value pairs about the line item. */
+  /**
+   * Extra information in the form of an array of Key-Value pairs about the line item.
+   *
+   * The input must not contain more than `250` values.
+   */
   customAttributes?: InputMaybe<Array<AttributeInput>>;
   /** The quantity of the line item. */
   quantity: Scalars['Int']['input'];
@@ -1856,7 +1895,11 @@ export type CheckoutLineItemInput = {
 
 /** The input fields to update a line item on the checkout. */
 export type CheckoutLineItemUpdateInput = {
-  /** Extra information in the form of an array of Key-Value pairs about the line item. */
+  /**
+   * Extra information in the form of an array of Key-Value pairs about the line item.
+   *
+   * The input must not contain more than `250` values.
+   */
   customAttributes?: InputMaybe<Array<AttributeInput>>;
   /** The ID of the line item. */
   id?: InputMaybe<Scalars['ID']['input']>;
@@ -2670,7 +2713,7 @@ export enum CountryCode {
   Tn = 'TN',
   /** Tonga. */
   To = 'TO',
-  /** Turkey. */
+  /** Türkiye. */
   Tr = 'TR',
   /** Trinidad & Tobago. */
   Tt = 'TT',
@@ -4054,15 +4097,15 @@ export type ImageTransformInput = {
 };
 
 /** Provide details about the contexts influenced by the @inContext directive on a field. */
-export type InContext = {
-  __typename?: 'InContext';
+export type InContextAnnotation = {
+  __typename?: 'InContextAnnotation';
   description: Scalars['String']['output'];
-  type: InContextType;
+  type: InContextAnnotationType;
 };
 
 /** This gives information about the type of context that impacts a field. For example, for a query with @inContext(language: "EN"), the type would point to the name: LanguageCode and kind: ENUM. */
-export type InContextType = {
-  __typename?: 'InContextType';
+export type InContextAnnotationType = {
+  __typename?: 'InContextAnnotationType';
   kind: Scalars['String']['output'];
   name: Scalars['String']['output'];
 };
@@ -4820,7 +4863,7 @@ export type MenuItem = Node & {
  * The list of possible resources a `MenuItem` can reference.
  *
  */
-export type MenuItemResource = Article | Blog | Collection | Page | Product | ShopPolicy;
+export type MenuItemResource = Article | Blog | Collection | Metaobject | Page | Product | ShopPolicy;
 
 /** A menu item type. */
 export enum MenuItemType {
@@ -4838,6 +4881,8 @@ export enum MenuItemType {
   Frontpage = 'FRONTPAGE',
   /** An http link. */
   Http = 'HTTP',
+  /** A metaobject page link. */
+  Metaobject = 'METAOBJECT',
   /** A page link. */
   Page = 'PAGE',
   /** A product link. */
@@ -6391,6 +6436,8 @@ export type ProductSellingPlanGroupsArgs = {
  *
  */
 export type ProductVariantBySelectedOptionsArgs = {
+  caseInsensitiveMatch?: InputMaybe<Scalars['Boolean']['input']>;
+  ignoreUnknownOptions?: InputMaybe<Scalars['Boolean']['input']>;
   selectedOptions: Array<SelectedOptionInput>;
 };
 
@@ -6629,6 +6676,8 @@ export type ProductVariant = HasMetafields & Node & {
   sku?: Maybe<Scalars['String']['output']>;
   /** The in-store pickup availability of this variant by location. */
   storeAvailability: StoreAvailabilityConnection;
+  /** Whether tax is charged when the product variant is sold. */
+  taxable: Scalars['Boolean']['output'];
   /** The product variant’s title. */
   title: Scalars['String']['output'];
   /** The unit price value for the variant based on the variant's measurement. */
@@ -6826,7 +6875,7 @@ export type QueryRoot = {
   productTags: StringConnection;
   /** List of product types for the shop's products that are published to your app. */
   productTypes: StringConnection;
-  /** List of the shop’s products. */
+  /** List of the shop’s products. For storefront search, use [`search` query](https://shopify.dev/docs/api/storefront/latest/queries/search). */
   products: ProductConnection;
   /** The list of public Storefront API versions, including supported, release candidate and unstable versions. */
   publicApiVersions: Array<ApiVersion>;
@@ -8029,12 +8078,12 @@ export type GetCollectionQueryVariables = Exact<{
 }>;
 
 
-export type GetCollectionQuery = { __typename?: 'QueryRoot', collection?: { __typename?: 'Collection', id: string, products: { __typename?: 'ProductConnection', nodes: Array<{ __typename?: 'Product', handle: string, title: string, availableForSale: boolean, image?: { __typename?: 'Metafield', reference?: { __typename?: 'Collection' } | { __typename?: 'GenericFile' } | { __typename?: 'MediaImage', image?: { __typename?: 'Image', url: any } | null } | { __typename?: 'Metaobject' } | { __typename?: 'Page' } | { __typename?: 'Product' } | { __typename?: 'ProductVariant' } | { __typename?: 'Video' } | null } | null, label?: { __typename?: 'Metafield', value: string } | null }> } } | null };
+export type GetCollectionQuery = { __typename?: 'QueryRoot', collection?: { __typename?: 'Collection', id: string, products: { __typename?: 'ProductConnection', nodes: Array<{ __typename?: 'Product', handle: string, title: string, availableForSale: boolean, updatedAt: any, image?: { __typename?: 'Metafield', reference?: { __typename?: 'Collection' } | { __typename?: 'GenericFile' } | { __typename?: 'MediaImage', image?: { __typename?: 'Image', url: any } | null } | { __typename?: 'Metaobject' } | { __typename?: 'Page' } | { __typename?: 'Product' } | { __typename?: 'ProductVariant' } | { __typename?: 'Video' } | null } | null, label?: { __typename?: 'Metafield', value: string } | null }> } } | null };
 
 export type GetLookbookListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetLookbookListQuery = { __typename?: 'QueryRoot', metaobject?: { __typename?: 'Metaobject', lookbooks?: { __typename?: 'MetaobjectField', references?: { __typename?: 'MetafieldReferenceConnection', nodes: Array<{ __typename?: 'Collection', id: string, handle: string, title: string, descriptionHtml: any, seo: { __typename?: 'SEO', title?: string | null, description?: string | null }, image?: { __typename?: 'Image', url: any } | null } | { __typename?: 'GenericFile' } | { __typename?: 'MediaImage' } | { __typename?: 'Metaobject' } | { __typename?: 'Page' } | { __typename?: 'Product' } | { __typename?: 'ProductVariant' } | { __typename?: 'Video' }> } | null } | null } | null };
+export type GetLookbookListQuery = { __typename?: 'QueryRoot', metaobject?: { __typename?: 'Metaobject', lookbooks?: { __typename?: 'MetaobjectField', references?: { __typename?: 'MetafieldReferenceConnection', nodes: Array<{ __typename?: 'Collection', id: string, handle: string, title: string, descriptionHtml: any, updatedAt: any, seo: { __typename?: 'SEO', title?: string | null, description?: string | null }, image?: { __typename?: 'Image', url: any } | null } | { __typename?: 'GenericFile' } | { __typename?: 'MediaImage' } | { __typename?: 'Metaobject' } | { __typename?: 'Page' } | { __typename?: 'Product' } | { __typename?: 'ProductVariant' } | { __typename?: 'Video' }> } | null } | null } | null };
 
 export type GetLookbookQueryVariables = Exact<{
   collectionHandle: Scalars['String']['input'];
@@ -8051,7 +8100,7 @@ export type GetProductQueryVariables = Exact<{
 export type GetProductQuery = { __typename?: 'QueryRoot', product?: { __typename?: 'Product', id: string, title: string, description: string, availableForSale: boolean, descriptionHtml: any, priceRange: { __typename?: 'ProductPriceRange', maxVariantPrice: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, minVariantPrice: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', url: any } }> }, variants: { __typename?: 'ProductVariantConnection', edges: Array<{ __typename?: 'ProductVariantEdge', node: { __typename?: 'ProductVariant', id: string, title: string, availableForSale: boolean, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }> } }> }, modelInfo?: { __typename?: 'Metafield', value: string } | null, sizeChart?: { __typename?: 'Metafield', value: string } | null, maleModel?: { __typename?: 'Metafield', references?: { __typename?: 'MetafieldReferenceConnection', nodes: Array<{ __typename?: 'Collection' } | { __typename?: 'GenericFile' } | { __typename?: 'MediaImage', image?: { __typename?: 'Image', url: any } | null } | { __typename?: 'Metaobject' } | { __typename?: 'Page' } | { __typename?: 'Product' } | { __typename?: 'ProductVariant' } | { __typename?: 'Video' }> } | null } | null, femaleModel?: { __typename?: 'Metafield', references?: { __typename?: 'MetafieldReferenceConnection', nodes: Array<{ __typename?: 'Collection' } | { __typename?: 'GenericFile' } | { __typename?: 'MediaImage', image?: { __typename?: 'Image', url: any } | null } | { __typename?: 'Metaobject' } | { __typename?: 'Page' } | { __typename?: 'Product' } | { __typename?: 'ProductVariant' } | { __typename?: 'Video' }> } | null } | null, styledWith?: { __typename?: 'Metafield', references?: { __typename?: 'MetafieldReferenceConnection', nodes: Array<{ __typename?: 'Collection' } | { __typename?: 'GenericFile' } | { __typename?: 'MediaImage' } | { __typename?: 'Metaobject' } | { __typename?: 'Page' } | { __typename?: 'Product', handle: string, featuredImage?: { __typename?: 'Image', url: any } | null } | { __typename?: 'ProductVariant' } | { __typename?: 'Video' }> } | null } | null } | null };
 
 
-export const GetCollectionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetCollection"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"collectionHandle"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"after"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"collection"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"handle"},"value":{"kind":"Variable","name":{"kind":"Name","value":"collectionHandle"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"products"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"250"}},{"kind":"Argument","name":{"kind":"Name","value":"after"},"value":{"kind":"Variable","name":{"kind":"Name","value":"after"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"handle"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"availableForSale"}},{"kind":"Field","alias":{"kind":"Name","value":"image"},"name":{"kind":"Name","value":"metafield"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"namespace"},"value":{"kind":"StringValue","value":"custom","block":false}},{"kind":"Argument","name":{"kind":"Name","value":"key"},"value":{"kind":"StringValue","value":"store_image","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"reference"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MediaImage"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"label"},"name":{"kind":"Name","value":"metafield"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"namespace"},"value":{"kind":"StringValue","value":"custom","block":false}},{"kind":"Argument","name":{"kind":"Name","value":"key"},"value":{"kind":"StringValue","value":"label_info","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetCollectionQuery, GetCollectionQueryVariables>;
-export const GetLookbookListDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetLookbookList"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"metaobject"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"handle"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"handle"},"value":{"kind":"StringValue","value":"lookbooks","block":false}},{"kind":"ObjectField","name":{"kind":"Name","value":"type"},"value":{"kind":"StringValue","value":"lookbooks","block":false}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"lookbooks"},"name":{"kind":"Name","value":"field"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"key"},"value":{"kind":"StringValue","value":"lookbooks","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"references"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"50"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Collection"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"handle"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"descriptionHtml"}},{"kind":"Field","name":{"kind":"Name","value":"seo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetLookbookListQuery, GetLookbookListQueryVariables>;
+export const GetCollectionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetCollection"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"collectionHandle"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"after"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"collection"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"handle"},"value":{"kind":"Variable","name":{"kind":"Name","value":"collectionHandle"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"products"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"250"}},{"kind":"Argument","name":{"kind":"Name","value":"after"},"value":{"kind":"Variable","name":{"kind":"Name","value":"after"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"handle"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"availableForSale"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","alias":{"kind":"Name","value":"image"},"name":{"kind":"Name","value":"metafield"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"namespace"},"value":{"kind":"StringValue","value":"custom","block":false}},{"kind":"Argument","name":{"kind":"Name","value":"key"},"value":{"kind":"StringValue","value":"store_image","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"reference"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MediaImage"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"label"},"name":{"kind":"Name","value":"metafield"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"namespace"},"value":{"kind":"StringValue","value":"custom","block":false}},{"kind":"Argument","name":{"kind":"Name","value":"key"},"value":{"kind":"StringValue","value":"label_info","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetCollectionQuery, GetCollectionQueryVariables>;
+export const GetLookbookListDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetLookbookList"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"metaobject"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"handle"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"handle"},"value":{"kind":"StringValue","value":"lookbooks","block":false}},{"kind":"ObjectField","name":{"kind":"Name","value":"type"},"value":{"kind":"StringValue","value":"lookbooks","block":false}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"lookbooks"},"name":{"kind":"Name","value":"field"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"key"},"value":{"kind":"StringValue","value":"lookbooks","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"references"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"50"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Collection"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"handle"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"descriptionHtml"}},{"kind":"Field","name":{"kind":"Name","value":"seo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetLookbookListQuery, GetLookbookListQueryVariables>;
 export const GetLookbookDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetLookbook"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"collectionHandle"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"collection"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"handle"},"value":{"kind":"Variable","name":{"kind":"Name","value":"collectionHandle"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"metafield"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"namespace"},"value":{"kind":"StringValue","value":"custom","block":false}},{"kind":"Argument","name":{"kind":"Name","value":"key"},"value":{"kind":"StringValue","value":"lookbook","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"references"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"50"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MediaImage"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetLookbookQuery, GetLookbookQueryVariables>;
 export const GetProductDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetProduct"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"handle"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"product"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"handle"},"value":{"kind":"Variable","name":{"kind":"Name","value":"handle"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"availableForSale"}},{"kind":"Field","name":{"kind":"Name","value":"descriptionHtml"}},{"kind":"Field","name":{"kind":"Name","value":"priceRange"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"maxVariantPrice"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"currencyCode"}}]}},{"kind":"Field","name":{"kind":"Name","value":"minVariantPrice"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"currencyCode"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"images"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"100"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"variants"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"100"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"availableForSale"}},{"kind":"Field","name":{"kind":"Name","value":"selectedOptions"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"modelInfo"},"name":{"kind":"Name","value":"metafield"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"namespace"},"value":{"kind":"StringValue","value":"custom","block":false}},{"kind":"Argument","name":{"kind":"Name","value":"key"},"value":{"kind":"StringValue","value":"model_information","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"value"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"sizeChart"},"name":{"kind":"Name","value":"metafield"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"namespace"},"value":{"kind":"StringValue","value":"custom","block":false}},{"kind":"Argument","name":{"kind":"Name","value":"key"},"value":{"kind":"StringValue","value":"size_chart","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"value"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"maleModel"},"name":{"kind":"Name","value":"metafield"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"namespace"},"value":{"kind":"StringValue","value":"custom","block":false}},{"kind":"Argument","name":{"kind":"Name","value":"key"},"value":{"kind":"StringValue","value":"male_model","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"references"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"50"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MediaImage"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"femaleModel"},"name":{"kind":"Name","value":"metafield"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"namespace"},"value":{"kind":"StringValue","value":"custom","block":false}},{"kind":"Argument","name":{"kind":"Name","value":"key"},"value":{"kind":"StringValue","value":"female_model","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"references"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"50"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MediaImage"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"styledWith"},"name":{"kind":"Name","value":"metafield"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"namespace"},"value":{"kind":"StringValue","value":"custom","block":false}},{"kind":"Argument","name":{"kind":"Name","value":"key"},"value":{"kind":"StringValue","value":"styled_with","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"references"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"50"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Product"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"handle"}},{"kind":"Field","name":{"kind":"Name","value":"featuredImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetProductQuery, GetProductQueryVariables>;

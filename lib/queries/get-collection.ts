@@ -9,6 +9,7 @@ export const GET_COLLECTION = graphql(`
           handle
           title
           availableForSale
+          updatedAt
           image: metafield(namespace: "custom", key: "store_image") {
             reference {
               ... on MediaImage {

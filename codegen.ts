@@ -1,7 +1,7 @@
 import { CodegenConfig } from "@graphql-codegen/cli";
 
 const config: CodegenConfig = {
-  schema: "node_modules/@shopify/hydrogen-react/storefront.schema.json",
+  schema: "node_modules/@whiteeespace/core/node_modules/@shopify/hydrogen-react/storefront.schema.json",
   documents: ["lib/**/*.ts"],
   ignoreNoDocuments: true, // for better experience with the watcher
   generates: {

@@ -18,6 +18,7 @@ export const GET_LOOKBOOK_LIST = graphql(`
               image {
                 url
               }
+              updatedAt
             }
           }
         }

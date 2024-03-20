@@ -3,13 +3,18 @@ import type { Metadata } from "next";
 import { PropsWithChildren } from "react";
 
 import Layout from "@/components/custom/Layout";
+import { baseUrl } from "@/lib/base-url";
 
 import "./global.scss";
 
 export const metadata: Metadata = {
   title: "sageism",
   description: "sageism sageismism sageismismism ©",
-  metadataBase: new URL("https://sageismism.com/"),
+  metadataBase: new URL(baseUrl),
+  robots: {
+    follow: true,
+    index: true,
+  },
 };
 
 const RootLayout: React.FC<PropsWithChildren> = ({ children }) => {
