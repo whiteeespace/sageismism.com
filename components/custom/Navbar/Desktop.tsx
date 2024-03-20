@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import Button from "@/components/shared/Button";
 
 import { MenuItem } from ".";
+import loadingLogo from "./images/loading-logo.png";
 import logo from "./images/logo.gif";
 import styles from "./styles.module.scss";
 import Cart from "../Cart";
@@ -20,7 +21,14 @@ export const DesktopNavbar: React.FC<Props> = ({ menuItems }) => {
   return (
     <div className={styles["header-desktop"]}>
       <Link href={"/"}>
-        <Image src={logo} alt={"logo"} priority className={styles["logo"]} />
+        <Image
+          src={logo}
+          alt={"logo"}
+          placeholder={"blur"}
+          blurDataURL={loadingLogo.src}
+          priority
+          className={styles["logo"]}
+        />
       </Link>
       <div className={styles["menu-container"]}>
         {menuItems.map((menuItem) => (
