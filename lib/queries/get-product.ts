@@ -39,12 +39,15 @@ export const GET_PRODUCT = graphql(`
         }
       }
       modelInfo: metafield(namespace: "custom", key: "model_information") {
+        type
         value
       }
       sizeChart: metafield(namespace: "custom", key: "size_chart") {
+        type
         value
       }
       maleModel: metafield(namespace: "custom", key: "male_model") {
+        type
         references(first: 50) {
           nodes {
             ... on MediaImage {
@@ -56,6 +59,7 @@ export const GET_PRODUCT = graphql(`
         }
       }
       femaleModel: metafield(namespace: "custom", key: "female_model") {
+        type
         references(first: 50) {
           nodes {
             ... on MediaImage {
@@ -67,6 +71,7 @@ export const GET_PRODUCT = graphql(`
         }
       }
       styledWith: metafield(namespace: "custom", key: "styled_with") {
+        type
         references(first: 50) {
           nodes {
             ... on Product {

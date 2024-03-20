@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import { forwardRef } from "react";
 
 import styles from "./styles.module.scss";
 
@@ -11,30 +12,29 @@ interface Props {
   type?: "button" | "submit" | "reset" | undefined;
 }
 
-const Button: React.FC<Props & React.HTMLProps<HTMLButtonElement>> = ({
-  onClick,
-  disabled,
-  className,
-  variant = "primary",
-  active,
-  children,
-  type = "button",
-  ...props
-}) => (
-  <button
-    className={classNames(
-      styles["button"],
-      styles[`button--${variant}`],
-      { [styles["active"]]: active },
-      className
-    )}
-    type={type}
-    onClick={onClick}
-    disabled={disabled}
-    {...props}
-  >
-    {children}
-  </button>
+const Button = forwardRef<HTMLButtonElement, Props & React.HTMLProps<HTMLButtonElement>>(
+  (
+    { onClick, disabled, className, variant = "primary", active, children, type = "button", ...props },
+    ref
+  ) => (
+    <button
+      ref={ref}
+      className={classNames(
+        styles["button"],
+        styles[`button--${variant}`],
+        { [styles["active"]]: active },
+        className
+      )}
+      type={type}
+      onClick={onClick}
+      disabled={disabled}
+      {...props}
+    >
+      {children}
+    </button>
+  )
 );
+
+Button.displayName = "Button";
 
 export default Button;

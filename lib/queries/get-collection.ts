@@ -1,6 +1,7 @@
+import { GetCollectionQuery } from "@/gql/graphql";
 import { graphql } from "gql";
 
-export const GET_COLLECTION = graphql(`
+export const getCollectionQuery = /* GraphQL */ `
   query GetCollection($collectionHandle: String!, $after: String) {
     collection(handle: $collectionHandle) {
       id
@@ -9,6 +10,7 @@ export const GET_COLLECTION = graphql(`
           handle
           title
           availableForSale
+          updatedAt
           image: metafield(namespace: "custom", key: "store_image") {
             reference {
               ... on MediaImage {
@@ -25,4 +27,15 @@ export const GET_COLLECTION = graphql(`
       }
     }
   }
-`);
+`;
+
+export type ShopifyCollectionOperation = {
+  data: {
+    collection: GetCollectionQuery["collection"];
+  };
+  variables: {
+    collectionHandle: string;
+  };
+};
+
+export const GET_COLLECTION = graphql(getCollectionQuery);
