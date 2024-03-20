@@ -1,6 +1,7 @@
+import { GetCollectionQuery } from "@/gql/graphql";
 import { graphql } from "gql";
 
-export const GET_COLLECTION = graphql(`
+export const getCollectionQuery = /* GraphQL */ `
   query GetCollection($collectionHandle: String!, $after: String) {
     collection(handle: $collectionHandle) {
       id
@@ -26,4 +27,15 @@ export const GET_COLLECTION = graphql(`
       }
     }
   }
-`);
+`;
+
+export type ShopifyCollectionOperation = {
+  data: {
+    collection: GetCollectionQuery["collection"];
+  };
+  variables: {
+    collectionHandle: string;
+  };
+};
+
+export const GET_COLLECTION = graphql(getCollectionQuery);

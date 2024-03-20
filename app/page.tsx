@@ -56,7 +56,7 @@ const HomePage: React.FC = () => {
     renderer.setSize(threejsContainerRef.current.clientWidth, threejsContainerRef.current.clientHeight);
     threejsContainerRef.current.appendChild(renderer.domElement);
 
-    const images = _.range(29).reverse();
+    const images = _.range(1, 29).reverse();
     images.forEach((it, idx) => {
       const loader = new THREE.TextureLoader();
       const material = new THREE.MeshBasicMaterial({

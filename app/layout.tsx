@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
 const RootLayout: React.FC<PropsWithChildren> = ({ children }) => {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <GoogleTagManager gtmId="G-F74KBNL4NN" />
       <body>
         <Layout>{children}</Layout>

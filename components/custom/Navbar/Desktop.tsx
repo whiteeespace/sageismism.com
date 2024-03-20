@@ -20,7 +20,7 @@ export const DesktopNavbar: React.FC<Props> = ({ menuItems }) => {
   return (
     <div className={styles["header-desktop"]}>
       <Link href={"/"}>
-        <Image src={logo} alt={"logo"} className={styles["logo"]} />
+        <Image src={logo} alt={"logo"} priority className={styles["logo"]} />
       </Link>
       <div className={styles["menu-container"]}>
         {menuItems.map((menuItem) => (
