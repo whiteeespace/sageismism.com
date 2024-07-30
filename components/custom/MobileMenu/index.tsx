@@ -34,10 +34,7 @@ export const MobileMenu: React.FC<Props> = ({ menuItems, className }) => (
       <Popover.Panel className={styles["panel"]}>
         <div className={styles["logos"]}>
           <Popover.Button as={Link} className={styles["link"]} href={"/"}>
-            <Image src={loader} placeholder="blur" alt={"logo"} className={styles["logo"]} />
-          </Popover.Button>
-          <Popover.Button as={Link} className={styles["link"]} href={"/"}>
-            <Image src={loader} placeholder="blur" alt={"logo"} className={styles["logo"]} />
+            <Image src={loader} alt={"logo"} className={styles["logo"]} />
           </Popover.Button>
         </div>
         <div className={styles["navigation"]}>
@@ -51,9 +48,6 @@ export const MobileMenu: React.FC<Props> = ({ menuItems, className }) => (
           )}
         </div>
         <div className={styles["links"]}>
-          {/* <Popover.Button as={Link} className={styles["drawer--link"]} to={"/contact"}>
-            <h2 className={styles["drawer--link--sub-text"]}>{"contact"}</h2>
-          </Popover.Button> */}
           <Popover.Button as={Link} className={styles["link"]} href={"/policies"}>
             <h2 className={styles["link--sub-text"]}>terms & conditions</h2>
           </Popover.Button>
