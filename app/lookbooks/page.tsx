@@ -1,7 +1,6 @@
 "use client";
 
-import { useQuery } from "@apollo/client";
-import { flattenConnection } from "@whiteeespace/core";
+import { flattenConnection, useQuery } from "@whiteeespace/core";
 import { motion } from "framer-motion";
 import { Suspense } from "react";
 
@@ -12,14 +11,15 @@ import Sphere from "./Sphere";
 import styles from "./styles.module.scss";
 
 const LookbooksPage: React.FC = () => {
-  const { data: lookbooksData, loading: isLookbooksLoading } =
-    useQuery<GetLookbookListQuery>(GET_LOOKBOOK_LIST);
+  const [result] = useQuery<GetLookbookListQuery>({
+    query: GET_LOOKBOOK_LIST,
+  });
 
-  if (isLookbooksLoading || !lookbooksData || !lookbooksData.metaobject?.lookbooks?.references) {
+  if (!result?.data?.metaobject?.lookbooks?.references) {
     return <></>;
   }
 
-  const lookbooks = flattenConnection(lookbooksData.metaobject?.lookbooks.references);
+  const lookbooks = flattenConnection(result.data.metaobject.lookbooks.references);
 
   return (
     <motion.div

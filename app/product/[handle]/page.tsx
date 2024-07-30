@@ -1,6 +1,5 @@
 "use client";
 
-import { useQuery } from "@apollo/client";
 import {
   Image,
   Model3D,
@@ -10,6 +9,7 @@ import {
   useProduct,
   ProductPrice,
   flattenConnection,
+  useQuery,
 } from "@whiteeespace/core";
 import { useParams } from "next/navigation";
 import { Fragment, useState } from "react";
@@ -61,6 +61,8 @@ const ProductView: React.FC<Props> = ({ productQuery }) => {
         (reference) => reference.__typename === "MediaImage" && reference.image?.url
       )
     : [];
+
+  console.log(maleModelImages, femaleModelImages);
 
   const modelInfo: ModelInfo = product.modelInfo ? JSON.parse(product.modelInfo.value) : null;
 
@@ -157,17 +159,18 @@ const ProductView: React.FC<Props> = ({ productQuery }) => {
 const ProductPage = () => {
   const { handle } = useParams<{ handle: string }>();
 
-  const { data: productData } = useQuery<GetProductQuery, GetProductQueryVariables>(GET_PRODUCT, {
+  const [result] = useQuery<GetProductQuery, GetProductQueryVariables>({
+    query: GET_PRODUCT,
     variables: { handle: handle! },
   });
 
-  if (!productData?.product) {
+  if (!result.data?.product) {
     return <></>;
   }
 
   return (
-    <ProductProvider data={productData.product}>
-      <ProductView productQuery={productData} />
+    <ProductProvider data={result.data.product}>
+      <ProductView productQuery={result.data} />
     </ProductProvider>
   );
 };

@@ -1,7 +1,6 @@
 "use client";
 
-import { useQuery } from "@apollo/client";
-import { Image, flattenConnection } from "@whiteeespace/core";
+import { Image, flattenConnection, useQuery } from "@whiteeespace/core";
 import { motion, useInView, useAnimation } from "framer-motion";
 import { useParams } from "next/navigation";
 import { useEffect, useRef } from "react";
@@ -37,21 +36,17 @@ const LookbookImage: React.FC<{ src: string }> = ({ src }) => {
 
 const LookbookPage: React.FC = () => {
   const { handle } = useParams<{ handle: string }>();
-  const { data: lookbookData, loading: isLookbookLoading } = useQuery<
-    GetLookbookQuery,
-    GetLookbookQueryVariables
-  >(GET_LOOKBOOK, {
+  const [result] = useQuery<GetLookbookQuery, GetLookbookQueryVariables>({
+    query: GET_LOOKBOOK,
     variables: { collectionHandle: handle ?? "" },
   });
 
-  console.log(handle, lookbookData);
-
-  if (isLookbookLoading || !lookbookData?.collection?.metafield?.references) {
+  if (!result.data?.collection?.metafield?.references) {
     return <></>;
   }
 
-  const lookbook = lookbookData.collection;
-  const lookbookImages = flattenConnection(lookbookData.collection?.metafield?.references);
+  const lookbook = result.data.collection;
+  const lookbookImages = flattenConnection(result.data.collection?.metafield?.references);
 
   return (
     <div className={styles["container"]}>

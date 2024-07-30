@@ -1,7 +1,6 @@
 "use client";
 
-import { useQuery } from "@apollo/client";
-import { flattenConnection } from "@whiteeespace/core";
+import { flattenConnection, useQuery } from "@whiteeespace/core";
 import classNames from "classnames";
 import Link from "next/link";
 
@@ -13,15 +12,16 @@ import { GetCollectionQuery, GetCollectionQueryVariables } from "gql/graphql";
 import styles from "./styles.module.scss";
 
 const ShopPage = () => {
-  const { data: productData } = useQuery<GetCollectionQuery, GetCollectionQueryVariables>(GET_COLLECTION, {
+  const [results] = useQuery<GetCollectionQuery, GetCollectionQueryVariables>({
+    query: GET_COLLECTION,
     variables: { collectionHandle: "all-products" },
   });
 
-  if (!productData?.collection?.products) {
+  if (!results?.data?.collection?.products) {
     return <></>;
   }
 
-  const products = flattenConnection(productData?.collection?.products);
+  const products = flattenConnection(results.data.collection.products);
 
   return (
     <div className={classNames(styles["container"])}>

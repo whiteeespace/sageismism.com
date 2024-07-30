@@ -1,6 +1,6 @@
 "use client";
 
-import { WhiteeeShopifyProvider } from "@whiteeespace/core";
+import { UrqlProvider, WhiteeeShopifyProvider } from "@whiteeespace/core";
 import classNames from "classnames";
 import { PropsWithChildren } from "react";
 
@@ -11,18 +11,15 @@ import styles from "./styles.module.scss";
 
 const Layout: React.FC<PropsWithChildren> = ({ children }) => {
   return (
-    <WhiteeeShopifyProvider
-      storeDomain={process.env.NEXT_PUBLIC_STOREFRONT_DOMAIN!}
-      storeToken={process.env.NEXT_PUBLIC_STOREFRONT_API_TOKEN!}
-      countryCode="CA"
-      languageCode="EN"
-    >
-      <div className={classNames(styles["container"])}>
-        <Navbar />
-        <div className={classNames(styles["content"])}>{children}</div>
-        <Footer />
-      </div>
-    </WhiteeeShopifyProvider>
+    <UrqlProvider>
+      <WhiteeeShopifyProvider countryCode="CA" languageCode="EN">
+        <div className={classNames(styles["container"])}>
+          <Navbar />
+          <div className={classNames(styles["content"])}>{children}</div>
+          <Footer />
+        </div>
+      </WhiteeeShopifyProvider>
+    </UrqlProvider>
   );
 };
 export default Layout;

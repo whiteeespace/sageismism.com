@@ -21,8 +21,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   const collection = await serverSideFetch<ShopifyCollectionOperation>({
-    domain: process.env.NEXT_PUBLIC_STOREFRONT_DOMAIN!,
-    storefrontToken: process.env.NEXT_PUBLIC_STOREFRONT_API_TOKEN!,
     query: getCollectionQuery,
     variables: {
       collectionHandle: "all-products",
@@ -38,8 +36,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })) ?? [];
 
   const lookbooksData = await serverSideFetch<ShopifyLookbooksOperation>({
-    domain: process.env.NEXT_PUBLIC_STOREFRONT_DOMAIN!,
-    storefrontToken: process.env.NEXT_PUBLIC_STOREFRONT_API_TOKEN!,
     query: getLookbooksQuery,
   });
 
