@@ -1,16 +1,16 @@
 {
-  "short_name": "sageism",
-  "name": "sageismism",
-  "description": "sageism sageismism sageismismism",
+  "background_color": "#ffffff",
+  "description": "sageism sageismism sageismismism.",
+  "display": "standalone",
   "icons": [
     {
-      "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
+      "src": "favicon.ico",
       "type": "image/x-icon"
     }
   ],
+  "name": "sageismism",
+  "short_name": "sageism",
   "start_url": "/",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#000000"
 }

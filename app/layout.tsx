@@ -9,7 +9,7 @@ import "./global.scss";
 
 export const metadata: Metadata = {
   title: "sageism",
-  description: "sageism sageismism sageismismism ©",
+  description: "sageism sageismism sageismismism ©.",
   metadataBase: new URL(baseUrl),
   robots: {
     follow: true,

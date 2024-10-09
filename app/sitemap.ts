@@ -15,7 +15,7 @@ import { baseUrl } from "@utils/base-url";
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   validateEnvironmentVariables();
 
-  const routesMap = ["", "/shop", "/lookbooks", "/stockists", "/contact", "/policies"].map((route) => ({
+  const routesMap = ["", "/shop", "/lookbooks", "/stockists"].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date().toISOString(),
   }));
