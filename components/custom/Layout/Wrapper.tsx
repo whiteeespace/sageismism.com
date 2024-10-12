@@ -4,8 +4,6 @@ import { ShopifyAnalytics, UrqlProvider, WhiteeeShopifyProvider } from "@whiteee
 import { usePathname } from "next/navigation";
 import React from "react";
 
-import FacebookPixel from "../MetaPixel";
-
 interface WrapperProps {
   children: React.ReactNode;
 }
@@ -22,7 +20,6 @@ const Wrapper: React.FC<WrapperProps> = ({ children }) => {
           pathname={pathname}
           domain={"sageismism.com"}
         />
-        <FacebookPixel />
       </WhiteeeShopifyProvider>
     </UrqlProvider>
   );
