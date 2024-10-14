@@ -42,7 +42,7 @@ export const MobileMenu: React.FC<Props> = ({ menuItems, className }) => (
             (item) =>
               !item.disabled && (
                 <Popover.Button key={item.title} as={Link} className={styles["link"]} href={item.to}>
-                  <h2 className={styles["link--text"]}>{item.title} ←</h2>
+                  <h2 className={styles["link--text"]}>{item.title}</h2>
                 </Popover.Button>
               )
           )}

@@ -11,7 +11,12 @@ import styles from "./styles.module.scss";
 const Logo: React.FC = () => {
   return (
     <Link className={styles["shop-link"]} href={"/"}>
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
+      <motion.div
+        className={styles["menu-logo"]}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
         <Image
           src={logo}
           alt={"logo"}

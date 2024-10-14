@@ -11,11 +11,11 @@ interface Props {
 export const MobileNavbar: React.FC<Props> = ({ menuItems }) => {
   return (
     <nav className={styles["header-mobile"]}>
+      <Logo />
       <div className={styles["button-container"]}>
         <MobileMenu menuItems={menuItems} className={styles["menu-button"]} />
         <Cart className={styles["menu-button"]} />
       </div>
-      <Logo />
     </nav>
   );
 };
