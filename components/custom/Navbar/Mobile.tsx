@@ -1,12 +1,5 @@
-"use client";
-
-import { motion } from "framer-motion";
-import Image from "next/image";
-import Link from "next/link";
-
 import { MenuItem } from ".";
-import loadingLogo from "./images/loading-logo.png";
-import logo from "./images/logo.gif";
+import Logo from "./Logo";
 import styles from "./styles.module.scss";
 import Cart from "../Cart";
 import { MobileMenu } from "../MobileMenu";
@@ -22,18 +15,7 @@ export const MobileNavbar: React.FC<Props> = ({ menuItems }) => {
         <MobileMenu menuItems={menuItems} className={styles["menu-button"]} />
         <Cart className={styles["menu-button"]} />
       </div>
-      <Link className={styles["shop-link"]} href={"/"}>
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
-          <Image
-            src={logo}
-            alt={"logo"}
-            placeholder={"blur"}
-            blurDataURL={loadingLogo.src}
-            priority
-            className={styles["logo"]}
-          />
-        </motion.div>
-      </Link>
+      <Logo />
     </div>
   );
 };

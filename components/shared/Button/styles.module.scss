@@ -3,10 +3,9 @@
 .button {
   border-radius: 5px;
   outline: none;
-  margin: 10px 0;
   cursor: pointer;
   font-weight: 600;
-  font-family: "roc-grotesk", sans-serif;
+  font-family: "elza", sans-serif;
   width: fit-content;
 
   &:disabled {
@@ -20,9 +19,9 @@
     border-radius: 50px;
     color: colors.$sage-green;
     transition: transform 0.2s;
-    font-size: 24px;
-    font-weight: bolder;
-    padding: 7px 60px;
+    font-size: 18px;
+    font-weight: 900;
+    padding: 8px 32px 6px;
     white-space: nowrap;
 
     @media only screen and (max-width: 848px) {
@@ -49,7 +48,13 @@
     background: transparent;
     font-size: 20px;
     color: colors.$black;
-    padding: 0 5px;
+    padding: 8px 16px 6px;
+
+    &:hover {
+      color: colors.$sage-green;
+      background-color: colors.$white;
+      border-radius: 6px;
+    }
   }
 
   &--link {

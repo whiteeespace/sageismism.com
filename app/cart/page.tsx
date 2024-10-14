@@ -21,8 +21,6 @@ import styles from "./styles.module.scss";
 const CartLine = () => {
   const { merchandise } = useCartLine();
 
-  console.log(merchandise?.id);
-
   return (
     <div className={styles["line"]}>
       {merchandise?.title} - {merchandise?.product?.title}

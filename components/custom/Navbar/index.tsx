@@ -1,7 +1,3 @@
-"use client";
-
-import { useWindowView } from "@whiteeespace/core";
-
 import { DesktopNavbar } from "./Desktop";
 import { MobileNavbar } from "./Mobile";
 
@@ -18,8 +14,12 @@ export interface MenuItem {
 }
 
 const Navbar = () => {
-  const { isTabletOrMobile } = useWindowView();
-  return isTabletOrMobile ? <MobileNavbar menuItems={MENU} /> : <DesktopNavbar menuItems={MENU} />;
+  return (
+    <>
+      <MobileNavbar menuItems={MENU} />
+      <DesktopNavbar menuItems={MENU} />
+    </>
+  );
 };
 
 export default Navbar;

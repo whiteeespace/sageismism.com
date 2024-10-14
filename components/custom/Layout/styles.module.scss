@@ -4,4 +4,8 @@
   display: grid;
   min-height: 100dvh;
   grid-template-rows: min-content auto min-content;
+
+  @media only screen and (min-width: 848px) {
+    padding: 200px 20px 0px;
+  }
 }

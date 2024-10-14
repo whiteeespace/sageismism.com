@@ -62,8 +62,6 @@ const ProductView: React.FC<Props> = ({ productQuery }) => {
       )
     : [];
 
-  console.log(maleModelImages, femaleModelImages);
-
   const modelInfo: ModelInfo = product.modelInfo ? JSON.parse(product.modelInfo.value) : null;
 
   const onClickImage = (i: number) => {
