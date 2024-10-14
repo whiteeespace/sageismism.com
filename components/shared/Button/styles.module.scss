@@ -21,12 +21,8 @@
     transition: transform 0.2s;
     font-size: 18px;
     font-weight: 900;
-    padding: 8px 32px 6px;
+    padding: 10px 32px 6px;
     white-space: nowrap;
-
-    @media only screen and (max-width: 848px) {
-      padding: 7px 32px;
-    }
 
     &:enabled:active {
       transform: scale(0.9);

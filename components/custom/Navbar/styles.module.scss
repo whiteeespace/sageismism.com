@@ -1,7 +1,8 @@
 @use "@utils/mixins/colors";
 
 .header-desktop {
-  position: relative;
+  position: sticky;
+  top: 0;
   display: flex;
   box-sizing: border-box;
   justify-content: space-between;
@@ -14,15 +15,12 @@
   }
 
   .logo {
-    position: fixed;
-    top: 0;
     width: auto;
     height: 160px;
     margin: 0 16px;
   }
 
   .menu-container {
-    position: fixed;
     top: 16px;
     right: 24px;
 

@@ -1,32 +1,31 @@
-"use client";
-
-import { flattenConnection, useQuery } from "@whiteeespace/core";
 import classNames from "classnames";
+import { Metadata, ResolvingMetadata } from "next";
 import Link from "next/link";
 
 import Item from "@/components/shared/Item";
-import { GET_COLLECTION } from "@utils/queries/get-collection";
 import { ProductLabel } from "@utils/types/productLabel";
-import { GetCollectionQuery, GetCollectionQueryVariables } from "gql/graphql";
 
+import { getCollection } from "./action";
 import styles from "./styles.module.scss";
 
-const ShopPage = () => {
-  const [results] = useQuery<GetCollectionQuery, GetCollectionQueryVariables>({
-    query: GET_COLLECTION,
-    variables: { collectionHandle: "all-products" },
-  });
+export async function generateMetadata(_, parent: ResolvingMetadata): Promise<Metadata> {
+  const parentFields = await parent;
 
-  if (!results?.data?.collection?.products) {
-    return <></>;
-  }
+  return {
+    title: "sageism shop",
+    description: "shop sageism jawns namsayin. shipping worldwide.",
+    metadataBase: parentFields.metadataBase,
+    ...parentFields.robots,
+  };
+}
 
-  const products = flattenConnection(results.data.collection.products);
+const ShopPage = async () => {
+  const { products } = await getCollection();
 
   return (
-    <div className={classNames(styles["container"])}>
+    <section className={classNames(styles["container"])}>
       <div className={classNames(styles["products"])}>
-        {products.map((product) => {
+        {products?.map((product) => {
           const labelInfo = product.label?.value
             ? (JSON.parse(product.label.value) as ProductLabel)
             : undefined;
@@ -43,7 +42,7 @@ const ShopPage = () => {
           );
         })}
       </div>
-    </div>
+    </section>
   );
 };
 

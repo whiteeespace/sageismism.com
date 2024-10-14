@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
   const { isMobile } = useWindowView();
 
   return (
-    <div className={styles["container"]}>
+    <footer className={styles["container"]}>
       <div>
         <h3 className={styles["copyright"]}>© sageism {new Date().getFullYear()}</h3>
       </div>
@@ -28,7 +28,7 @@ const Footer: React.FC = () => {
           <p className={styles["link"]}>instagram</p>
         </a>
       </div>
-    </div>
+    </footer>
   );
 };
 

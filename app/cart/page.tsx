@@ -11,7 +11,7 @@ import {
 } from "@whiteeespace/core";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import Button from "@/components/shared/Button";
 
@@ -19,11 +19,11 @@ import DraggableItem from "./DraggableItem";
 import styles from "./styles.module.scss";
 
 const CartLine = () => {
-  const { merchandise } = useCartLine();
+  const { quantity, merchandise } = useCartLine();
 
   return (
     <div className={styles["line"]}>
-      {merchandise?.title} - {merchandise?.product?.title}
+      {quantity} x {merchandise?.title} - {merchandise?.product?.title}
       <CartLineQuantityAdjustButton // @ts-expect-error typing issues with shopify
         as={Button}
         variant={"secondary"}
@@ -38,7 +38,7 @@ const CartLine = () => {
 
 const CartPage = () => {
   const router = useRouter();
-  const { lines, linesRemove, cost } = useCart();
+  const { lines, cost } = useCart();
   const boundRef = useRef(null);
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
@@ -63,26 +63,28 @@ const CartPage = () => {
 
   const isEmpty = !lines?.length;
 
-  const clearCart = useCallback(async () => {
-    linesRemove(lines?.map((line) => line?.id ?? "") ?? []);
-  }, [lines, linesRemove]);
+  if (!lines) {
+    return <></>;
+  }
 
   return (
     <div className={styles["container"]}>
       <div ref={boundRef} className={styles["cart-images"]}>
         {height > 0 &&
           width > 0 &&
-          lines?.map((item, idx) => (
-            <DraggableItem
-              id={item?.id ?? ""}
-              key={item?.id}
-              index={idx}
-              totalNumber={lines.length}
-              src={item?.merchandise?.image?.url ?? ""}
-              maxX={width}
-              maxY={height}
-            />
-          ))}
+          lines?.map((item, idx) =>
+            Array.from(Array(item?.quantity).keys()).map((_, index) => (
+              <DraggableItem
+                id={item?.id ?? ""}
+                key={item?.id}
+                index={idx + index}
+                totalNumber={lines.reduce((acc, line) => acc + (line?.quantity ?? 0), 0)}
+                src={item?.merchandise?.image?.url ?? ""}
+                maxX={width}
+                maxY={height}
+              />
+            ))
+          )}
       </div>
       <motion.div
         initial={{ opacity: 0 }}
@@ -90,7 +92,20 @@ const CartPage = () => {
         transition={{ duration: 0.5 }}
         className={styles["cart-items"]}
       >
-        <h1 className={styles["title"]}>shopping cart</h1>
+        {isEmpty ? (
+          <Button variant="primary" onClick={() => router.push("/shop")}>
+            continue shopping
+          </Button>
+        ) : (
+          <div className={styles["button-container"]}>
+            <CartCheckoutButton // @ts-expect-error typing issues with shopify
+              as={Button}
+              variant="primary"
+            >
+              checkout
+            </CartCheckoutButton>
+          </div>
+        )}
         <p className={styles["info"]}>
           {isEmpty ? (
             "your cart is currently empty"
@@ -117,28 +132,12 @@ const CartPage = () => {
           <Money
             className={styles["amount"]}
             data={cost?.totalAmount ?? { amount: "0", currencyCode: "CAD" }}
+            withoutTrailingZeros
           />
         </div>
-        {isEmpty ? (
-          <Button variant="primary" onClick={() => router.push("/shop")}>
-            continue shopping
-          </Button>
-        ) : (
-          <div className={styles["button-container"]}>
-            <Button variant="primary" onClick={clearCart}>
-              clear
-            </Button>
-            <CartCheckoutButton // @ts-expect-error typing issues with shopify
-              as={Button}
-              variant="primary"
-            >
-              checkout
-            </CartCheckoutButton>
-          </div>
-        )}
       </motion.div>
       <p className={styles["free-shipping"]}>
-        free shipping in Canada on orders over $69 and US on orders over $99
+        * free shipping in Canada on orders over $69 and US on orders over $99
       </p>
     </div>
   );

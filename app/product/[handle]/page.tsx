@@ -1,174 +1,32 @@
-"use client";
+import { redirect } from "next/navigation";
 
-import {
-  Image,
-  Model3D,
-  useWindowView,
-  AddToCartButton,
-  ProductProvider,
-  useProduct,
-  ProductPrice,
-  flattenConnection,
-  useQuery,
-} from "@whiteeespace/core";
-import { useParams } from "next/navigation";
-import { Fragment, useState } from "react";
+import { ProductProvider } from "./_components/ProductProvider";
+import { ProductView } from "./_components/ProductView";
+import { getProduct } from "./action";
 
-import Button from "@/components/shared/Button";
-import { ProductSizes, Size } from "@/components/shared/Sizes";
-import { GET_PRODUCT } from "@utils/queries/get-product";
-import { Gender } from "@utils/types/gender";
-import { GetProductQuery, GetProductQueryVariables, ProductVariant } from "gql/graphql";
+const ProductPage = async ({ params }) => {
+  const handle = String(params.handle);
 
-import DetailsDialog from "./DetailsDialog";
-import styles from "./styles.module.scss";
+  if (!handle) {
+    return redirect("/shop");
+  }
 
-interface Props {
-  productQuery: GetProductQuery;
-}
+  const { product, productImages, productVariants, maleModelImages, femaleModelImages, modelInfo } =
+    await getProduct(handle);
 
-interface ModelInfo {
-  "male-model": { height: string; size: string };
-  "female-model": { height: string; size: string };
-  text: string;
-}
-
-const ProductView: React.FC<Props> = ({ productQuery }) => {
-  const { selectedVariant, setSelectedVariant } = useProduct();
-  const { isTabletOrMobile } = useWindowView();
-  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
-  const [primaryImageIndex, setPrimaryImageIndex] = useState(0);
-
-  const product = productQuery.product;
   if (!product) {
     return <></>;
   }
 
-  const productImages = flattenConnection(product.images);
-
-  const productVariants: ProductVariant[] = flattenConnection(product.variants).filter(
-    (variant): variant is ProductVariant => !!variant
-  );
-
-  const maleModelImages: string[] = product.maleModel?.references
-    ? flattenConnection(product.maleModel.references).map(
-        (reference) => reference.__typename === "MediaImage" && reference.image?.url
-      )
-    : [];
-
-  const femaleModelImages: string[] = product.femaleModel?.references
-    ? flattenConnection(product.femaleModel.references).map(
-        (reference) => reference.__typename === "MediaImage" && reference.image?.url
-      )
-    : [];
-
-  const modelInfo: ModelInfo = product.modelInfo ? JSON.parse(product.modelInfo.value) : null;
-
-  const onClickImage = (i: number) => {
-    setPrimaryImageIndex(i);
-    setIsDetailsOpen(true);
-  };
-
-  const ProductDetails = () => (
-    <div className={styles["left-content"]}>
-      <h1>{product.title}</h1>
-      <div
-        className={styles["description"]}
-        dangerouslySetInnerHTML={{
-          __html: product.descriptionHtml,
-        }}
-      />
-      <div className={styles["product-details-images"]}>
-        {productImages.map((image, i) => (
-          <Button variant={"secondary"} onClick={() => onClickImage(i)} key={`productImage${i}`}>
-            <Image src={image.url} alt={`product-img-${i}`} />
-          </Button>
-        ))}
-      </div>
-    </div>
-  );
-
   return (
-    <>
-      <div className={styles["container"]}>
-        <div className={styles["main-content"]}>
-          {!isTabletOrMobile && <ProductDetails />}
-          {maleModelImages.length && femaleModelImages.length ? (
-            <div className={styles["carousels-container"]}>
-              <div className={styles["carousels"]}>
-                <Model3D
-                  className={styles["carousel"]}
-                  images={maleModelImages}
-                  height={modelInfo?.["male-model"].height}
-                  size={modelInfo?.["male-model"].size}
-                  gender={Gender.MAN}
-                />
-                <Model3D
-                  className={styles["carousel"]}
-                  images={femaleModelImages}
-                  height={modelInfo?.["female-model"].height}
-                  size={modelInfo?.["female-model"].size}
-                  gender={Gender.WOMAN}
-                />
-              </div>
-              <div className={styles["carousel-text"]}>drag for 360° view</div>
-            </div>
-          ) : (
-            <div className={styles["primary-image"]}>
-              <Image src={productImages[0].url} alt={"primary-image"} />
-            </div>
-          )}
-
-          {isTabletOrMobile && <ProductDetails />}
-          <div className={styles["right-content"]}>
-            <ProductPrice data={product} withoutTrailingZeros={true} className={styles["price"]} />
-            <ProductSizes
-              value={selectedVariant as ProductVariant | undefined}
-              onChange={(val) => setSelectedVariant(val)}
-            >
-              {productVariants.map((variant) => (
-                <Fragment key={variant.id}>
-                  <Size label={variant.title} value={variant} disabled={!variant.availableForSale} />
-                </Fragment>
-              ))}
-            </ProductSizes>
-
-            <AddToCartButton // @ts-expect-error typing issues with shopify
-              as={Button}
-              className={styles["button"]}
-              variantId={selectedVariant?.id}
-              disabled={!product.availableForSale}
-            >
-              {product.availableForSale ? "add to cart" : "sold out"}
-            </AddToCartButton>
-          </div>
-        </div>
-      </div>
-      <DetailsDialog
-        images={productImages.map((image) => image.url)}
-        openAt={primaryImageIndex}
-        isOpen={isDetailsOpen}
-        setIsOpen={setIsDetailsOpen}
+    <ProductProvider data={product}>
+      <ProductView
+        productImages={productImages}
+        productVariants={productVariants}
+        maleModelImages={maleModelImages}
+        femaleModelImages={femaleModelImages}
+        modelInfo={modelInfo}
       />
-    </>
-  );
-};
-
-const ProductPage = () => {
-  const { handle } = useParams<{ handle: string }>();
-
-  const [result] = useQuery<GetProductQuery, GetProductQueryVariables>({
-    query: GET_PRODUCT,
-    variables: { handle: handle! },
-  });
-
-  if (!result.data?.product) {
-    return <></>;
-  }
-
-  return (
-    <ProductProvider data={result.data.product}>
-      <ProductView productQuery={result.data} />
     </ProductProvider>
   );
 };

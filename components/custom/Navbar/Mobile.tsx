@@ -10,12 +10,12 @@ interface Props {
 
 export const MobileNavbar: React.FC<Props> = ({ menuItems }) => {
   return (
-    <div className={styles["header-mobile"]}>
+    <nav className={styles["header-mobile"]}>
       <div className={styles["button-container"]}>
         <MobileMenu menuItems={menuItems} className={styles["menu-button"]} />
         <Cart className={styles["menu-button"]} />
       </div>
       <Logo />
-    </div>
+    </nav>
   );
 };

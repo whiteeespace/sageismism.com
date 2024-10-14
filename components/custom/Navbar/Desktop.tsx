@@ -15,7 +15,7 @@ interface Props {
 
 export const DesktopNavbar: React.FC<Props> = ({ menuItems }) => {
   return (
-    <div className={styles["header-desktop"]}>
+    <nav className={styles["header-desktop"]}>
       <Link href={"/"}>
         <Image
           src={logo}
@@ -36,6 +36,6 @@ export const DesktopNavbar: React.FC<Props> = ({ menuItems }) => {
         ))}
         <Cart className={styles["menu-item"]} />
       </div>
-    </div>
+    </nav>
   );
 };
