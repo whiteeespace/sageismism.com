@@ -44,6 +44,7 @@ const CartPage = () => {
   const [height, setHeight] = useState(0);
 
   useEffect(() => {
+    if (!lines?.length) return;
     const resizeObserver = new ResizeObserver((entries) => {
       for (const entry of entries) {
         if (entry.contentRect) {
@@ -59,12 +60,24 @@ const CartPage = () => {
 
     const boundRefCurrent = boundRef.current;
     return () => resizeObserver.unobserve(boundRefCurrent!);
-  }, []);
+  }, [lines?.length]);
 
   const isEmpty = !lines?.length;
 
-  if (!lines) {
-    return <></>;
+  if (isEmpty) {
+    return (
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className={styles["empty-cart"]}
+      >
+        <p>Your cart is currently empty.</p>
+        <Button variant="primary" onClick={() => router.push("/shop")}>
+          Continue Shopping
+        </Button>
+      </motion.div>
+    );
   }
 
   return (
@@ -92,32 +105,22 @@ const CartPage = () => {
         transition={{ duration: 0.5 }}
         className={styles["cart-items"]}
       >
-        {isEmpty ? (
-          <Button variant="primary" onClick={() => router.push("/shop")}>
-            continue shopping
-          </Button>
-        ) : (
-          <div className={styles["button-container"]}>
-            <CartCheckoutButton // @ts-expect-error typing issues with shopify
-              as={Button}
-              variant="primary"
-            >
-              checkout
-            </CartCheckoutButton>
-          </div>
-        )}
+        <div className={styles["button-container"]}>
+          <CartCheckoutButton // @ts-expect-error typing issues with shopify
+            as={Button}
+            variant="primary"
+          >
+            checkout
+          </CartCheckoutButton>
+        </div>
         <p className={styles["info"]}>
-          {isEmpty ? (
-            "your cart is currently empty"
-          ) : (
-            <div className={styles["lines"]}>
-              {lines.map((line) => (
-                <CartLineProvider key={line?.id} line={line!}>
-                  <CartLine />
-                </CartLineProvider>
-              ))}
-            </div>
-          )}
+          <div className={styles["lines"]}>
+            {lines.map((line) => (
+              <CartLineProvider key={line?.id} line={line!}>
+                <CartLine />
+              </CartLineProvider>
+            ))}
+          </div>
         </p>
       </motion.div>
 

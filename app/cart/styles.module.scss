@@ -132,3 +132,13 @@
     cursor: grabbing;
   }
 }
+
+.empty-cart {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  align-items: center;
+  justify-content: center;
+
+  padding-top: 60px;
+}

@@ -19,7 +19,7 @@ interface Props {
 export const MobileMenu: React.FC<Props> = ({ menuItems, className }) => (
   <Popover>
     <Popover.Button className={className} as={Button} variant="secondary">
-      menu
+      Menu
     </Popover.Button>
     <Popover.Overlay className={styles["overlay"]} />
     <Transition
@@ -48,6 +48,9 @@ export const MobileMenu: React.FC<Props> = ({ menuItems, className }) => (
           )}
         </div>
         <div className={styles["links"]}>
+          <Popover.Button as={Link} className={styles["link"]} href={"/stockists"}>
+            <h2 className={styles["link--sub-text"]}>stockists</h2>
+          </Popover.Button>
           <Popover.Button as={Link} className={styles["link"]} href={"/policies"}>
             <h2 className={styles["link--sub-text"]}>terms & conditions</h2>
           </Popover.Button>

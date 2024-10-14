@@ -1,11 +1,19 @@
 "use client";
 
-import { Image, Model3D, AddToCartButton, useProduct, ProductPrice } from "@whiteeespace/core";
+import {
+  Image,
+  Model3D,
+  AddToCartButton,
+  useProduct,
+  ProductPrice,
+  useShopifyAnalytics,
+  useCart,
+} from "@whiteeespace/core";
 import { Fragment } from "react";
 
 import Button from "@/components/shared/Button";
-import { ProductSizes, Size } from "@/components/shared/Sizes";
 import { Image as ImageType, ProductVariant } from "@/gql/graphql";
+import { SizeRadio, SizeRadioGroup } from "@components/Sizes";
 import { Gender } from "@utils/types/gender";
 
 import styles from "../styles.module.scss";
@@ -32,6 +40,11 @@ export const ProductView: React.FC<Props> = ({
   modelInfo,
 }) => {
   const { product, selectedVariant, setSelectedVariant } = useProduct();
+  const { id: cartId } = useCart();
+  const { sendAddToCart } = useShopifyAnalytics({
+    shopId: `${process.env.NEXT_PUBLIC_SHOP_ID}`,
+    currency: "CAD",
+  });
 
   if (!product) {
     return <></>;
@@ -76,22 +89,43 @@ export const ProductView: React.FC<Props> = ({
       <div className={styles["right-content"]}>
         <ProductPrice data={product} withoutTrailingZeros={true} className={styles["price"]} />
 
-        <ProductSizes
-          value={selectedVariant as ProductVariant | undefined}
-          onChange={(val) => setSelectedVariant(val)}
+        <SizeRadioGroup
+          aria-label={"sizes"}
+          defaultValue={selectedVariant?.id}
+          onValueChange={(id: string) => {
+            const variant = productVariants.find((variant) => variant?.id === id);
+            if (variant) {
+              setSelectedVariant(variant);
+            }
+          }}
         >
           {productVariants.map((variant) => (
-            <Fragment key={variant.id}>
-              <Size label={variant.title} value={variant} disabled={!variant.availableForSale} />
-            </Fragment>
+            <SizeRadio key={variant?.id} value={variant?.id ?? ""} disabled={!variant?.availableForSale}>
+              {variant?.title}
+            </SizeRadio>
           ))}
-        </ProductSizes>
+        </SizeRadioGroup>
 
         <AddToCartButton // @ts-expect-error typing issues with shopify
           as={Button}
           className={styles["button"]}
           variantId={selectedVariant?.id}
           disabled={!product.availableForSale}
+          onClick={() => {
+            sendAddToCart({
+              cartId: cartId ?? "",
+              products: [
+                {
+                  productGid: product.id ?? "",
+                  name: product.title ?? "",
+                  brand: product.vendor ?? "Sageism",
+                  price: product.priceRange?.maxVariantPrice?.amount ?? "0",
+                  variantGid: selectedVariant?.id ?? "",
+                  quantity: 1,
+                },
+              ],
+            });
+          }}
         >
           {product.availableForSale ? "add to cart" : "sold out"}
         </AddToCartButton>

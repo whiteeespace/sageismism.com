@@ -16,9 +16,9 @@ const Footer: React.FC = () => {
       <div className={styles["details"]}>
         {!isMobile && (
           <>
-            {/* <Link className={styles["link"]} to="/contact">
-              contact us
-            </Link> */}
+            <Link className={styles["link"]} href="/stockists">
+              stockists
+            </Link>
             <Link className={styles["link"]} href="/policies">
               terms & conditions
             </Link>

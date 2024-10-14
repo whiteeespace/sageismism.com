@@ -20,7 +20,7 @@ const Cart: React.FC<Props> = ({ className }) => {
   return (
     <div className={styles["cart-container"]}>
       <Button variant="secondary" className={className} onClick={() => router.push("/cart")}>
-        cart
+        Cart
       </Button>
       {showQuantity && <div className={styles["count"]}>{totalQuantity}</div>}
     </div>

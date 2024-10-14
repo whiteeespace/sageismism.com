@@ -12,7 +12,7 @@ export async function generateMetadata(_, parent: ResolvingMetadata): Promise<Me
   const parentFields = await parent;
 
   return {
-    title: "sageism shop",
+    title: "Sageism · shop",
     description: "shop sageism jawns namsayin. shipping worldwide.",
     metadataBase: parentFields.metadataBase,
     ...parentFields.robots,

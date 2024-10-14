@@ -2,9 +2,9 @@ import { DesktopNavbar } from "./Desktop";
 import { MobileNavbar } from "./Mobile";
 
 const MENU = [
-  { title: "shop", to: "/shop" },
-  { title: "lookbooks", to: "/lookbooks" },
-  { title: "stockists", to: "/stockists" },
+  { title: "Shop", to: "/shop" },
+  { title: "Lookbooks", to: "/lookbooks" },
+  { title: "About us", to: "/about-us" },
 ];
 
 export interface MenuItem {

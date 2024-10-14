@@ -1,9 +1,10 @@
 .container {
   position: relative;
   padding: 0 20px;
-  min-height: calc(100dvh - 204px);
+  min-height: calc(100dvh - 307px);
 
   @media only screen and (min-width: 848px) {
     padding: 20px 0px;
+    min-height: calc(100dvh - 204px);
   }
 }
