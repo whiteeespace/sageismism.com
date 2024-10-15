@@ -1,6 +1,5 @@
 "use client";
 
-import { useWindowView } from "@whiteeespace/core";
 import { disableBodyScroll, clearAllBodyScrollLocks } from "body-scroll-lock";
 import { motion } from "framer-motion";
 import _ from "lodash";
@@ -18,7 +17,6 @@ const signRandomizer = (idx: number) => (seededRandom(idx) >= 0.5 ? 1 : -1);
 const History: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const threejsContainerRef = useRef<HTMLDivElement>(null);
-  const { isMobile } = useWindowView();
   const [touchStartCoord, setTouchStartCoord] = useState({ x: 0, y: 0 });
   const [camera, setCamera] = useState<THREE.PerspectiveCamera | null>(null);
 
@@ -63,7 +61,7 @@ const History: React.FC = () => {
       const firstSign = idx % 2 === 0 ? -1 : 1;
       mesh.position.set(
         firstSign * (seededRandom(idx + 24) * 100),
-        signRandomizer(29 - idx) * seededRandom(idx + 8) * 35,
+        signRandomizer(29 - idx) * seededRandom(idx + 8) * 35 + 10,
         idx * -15
       );
       scene.add(mesh);
@@ -106,7 +104,7 @@ const History: React.FC = () => {
 
       threejsContainerRefState.removeChild(renderer.domElement);
     };
-  }, [fovMAX, fovMIN, isMobile]);
+  }, [fovMAX, fovMIN]);
 
   const onMove = useCallback(
     (currX: number, currY: number) => {
