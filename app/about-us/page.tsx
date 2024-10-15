@@ -19,7 +19,7 @@ const AboutUsPage: React.FC = () => {
   return (
     <>
       <div className={styles["text-container"]}>
-        <p>* Pictures are worth a thousand words.</p>
+        <p>Sageism, established in 2020, based in Montreal.</p>
       </div>
       <History />
     </>
