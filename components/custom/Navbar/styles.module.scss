@@ -41,12 +41,10 @@
 }
 
 .header-mobile {
-  position: relative;
+  position: sticky;
+  top: 0;
+
   display: flex;
-  justify-content: center;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-items: flex-end;
   z-index: 1;
 
   @media only screen and (min-width: 900px) {
@@ -54,10 +52,6 @@
   }
 
   .button-container {
-    position: fixed;
-    top: 0;
-    right: 0px;
-
     display: flex;
     padding: 8px;
     background: linear-gradient(180deg, #dbdbd8 0%, #e4e4e0 100%);
@@ -68,8 +62,7 @@
   }
 
   .shop-link {
-    padding-top: 100px;
-    width: 80%;
+    width: 100%;
     margin: auto;
 
     .menu-logo {
@@ -77,7 +70,8 @@
     }
 
     img {
-      width: 100%;
+      width: 80%;
+      margin: 8px 24px;
       height: auto;
     }
   }

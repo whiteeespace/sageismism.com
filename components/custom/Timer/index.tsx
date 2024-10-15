@@ -1,5 +1,6 @@
 "use client";
 
+import classNames from "classnames";
 import React, { useState, useEffect } from "react";
 
 import styles from "./styles.module.scss";
@@ -7,9 +8,10 @@ import styles from "./styles.module.scss";
 interface TimerProps {
   targetDate: Date;
   onTimerEnd?: () => void;
+  className?: string;
 }
 
-const Timer: React.FC<TimerProps> = ({ targetDate, onTimerEnd }) => {
+const Timer: React.FC<TimerProps> = ({ targetDate, onTimerEnd, className }) => {
   const [timeLeft, setTimeLeft] = useState<number>(0);
 
   useEffect(() => {
@@ -43,7 +45,7 @@ const Timer: React.FC<TimerProps> = ({ targetDate, onTimerEnd }) => {
     return `${days}d ${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
   };
 
-  return <div className={styles["timer"]}>{formatTime(timeLeft)}</div>;
+  return <div className={classNames(styles["timer"], className)}>{formatTime(timeLeft)}</div>;
 };
 
 export default Timer;

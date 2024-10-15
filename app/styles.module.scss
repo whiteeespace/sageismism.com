@@ -12,3 +12,10 @@
   padding: 4px 12px 2px;
   white-space: nowrap;
 }
+
+.timer {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

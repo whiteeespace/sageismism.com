@@ -60,11 +60,10 @@ const History: React.FC = () => {
       const geometry = new THREE.PlaneGeometry(50, 50);
       const mesh = new THREE.Mesh(geometry, material);
 
-      const modifier = isMobile ? -8 : 0;
       const firstSign = idx % 2 === 0 ? -1 : 1;
       mesh.position.set(
         firstSign * (seededRandom(idx + 24) * 100),
-        signRandomizer(29 - idx) * seededRandom(idx + 8) * 35 + modifier,
+        signRandomizer(29 - idx) * seededRandom(idx + 8) * 35,
         idx * -15
       );
       scene.add(mesh);
