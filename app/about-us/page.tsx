@@ -3,6 +3,7 @@ import React from "react";
 
 import History from "./_components/History";
 import styles from "./styles.module.scss";
+
 export async function generateMetadata(_, parent: ResolvingMetadata): Promise<Metadata> {
   const parentFields = await parent;
 

@@ -7,6 +7,8 @@ import { useEffect, useRef, useState, TouchEvent, useCallback } from "react";
 import * as THREE from "three";
 import { seededRandom } from "three/src/math/MathUtils";
 
+import { useWindowSize } from "@utils/hooks/use-window-size";
+
 import styles from "../styles.module.scss";
 
 const X_MAX = 4;
@@ -19,22 +21,18 @@ const History: React.FC = () => {
   const threejsContainerRef = useRef<HTMLDivElement>(null);
   const [touchStartCoord, setTouchStartCoord] = useState({ x: 0, y: 0 });
   const [camera, setCamera] = useState<THREE.PerspectiveCamera | null>(null);
+  const { width, height } = useWindowSize();
 
   const fovMAX = 60;
   const fovMIN = -400;
 
   useEffect(() => {
-    if (!containerRef.current || !threejsContainerRef.current) {
+    if (!containerRef.current || !threejsContainerRef.current || !width || !height) {
       return;
     }
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(
-      75,
-      threejsContainerRef.current.clientWidth / threejsContainerRef.current.clientHeight,
-      0.1,
-      1000
-    );
+    const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
 
     setCamera(camera);
     camera.position.z = 60;
@@ -44,7 +42,7 @@ const History: React.FC = () => {
       antialias: true,
     });
 
-    renderer.setSize(threejsContainerRef.current.clientWidth, threejsContainerRef.current.clientHeight);
+    renderer.setSize(width, height);
     threejsContainerRef.current.appendChild(renderer.domElement);
 
     const images = _.range(1, 29).reverse();
@@ -77,8 +75,8 @@ const History: React.FC = () => {
     };
 
     const onDocumentMouseMove = (evt: MouseEvent) => {
-      camera.position.x = (evt.clientX / window.innerWidth) * X_MAX * 2 - X_MAX;
-      camera.position.y = -(evt.clientY / window.innerHeight) * X_MAX * 2 + X_MAX;
+      camera.position.x = (evt.clientX / width) * X_MAX * 2 - X_MAX;
+      camera.position.y = -(evt.clientY / height) * X_MAX * 2 + X_MAX;
     };
 
     window.addEventListener("wheel", onDocumentMouseWheel);
@@ -104,20 +102,20 @@ const History: React.FC = () => {
 
       threejsContainerRefState.removeChild(renderer.domElement);
     };
-  }, [fovMAX, fovMIN]);
+  }, [fovMAX, fovMIN, height, width]);
 
   const onMove = useCallback(
     (currX: number, currY: number) => {
-      if (camera) {
+      if (camera && width) {
         camera.position.z -= (touchStartCoord.y - currY) * 0.5;
         camera.position.z = Math.max(Math.min(camera.position.z, fovMAX), fovMIN);
-        camera.position.x += ((touchStartCoord.x - currX) / window.innerWidth) * X_MAX_MOBILE * 2;
+        camera.position.x += ((touchStartCoord.x - currX) / width) * X_MAX_MOBILE * 2;
         camera.position.x = Math.max(Math.min(camera.position.x, X_MAX_MOBILE), -X_MAX_MOBILE);
 
         setTouchStartCoord({ x: currX, y: currY });
       }
     },
-    [camera, fovMIN, touchStartCoord.x, touchStartCoord.y]
+    [camera, fovMIN, touchStartCoord.x, touchStartCoord.y, width]
   );
 
   const touchStart = useCallback((evt: TouchEvent<HTMLDivElement>) => {
