@@ -18,7 +18,7 @@ const AboutUsPage: React.FC = () => {
   return (
     <>
       <div className={styles["text-container"]}>
-        <p>* They say pictures are worth a thousand words.</p>
+        <p>* Pictures are worth a thousand words.</p>
       </div>
       <History />
     </>

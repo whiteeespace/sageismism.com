@@ -27,12 +27,12 @@ const StockistsPage: React.FC = () => {
     >
       <div className={styles["locations"]}>
         {STOCKISTS.map((stockist) => (
-          <>
+          <div key={stockist.name}>
             <a href={stockist.website} target="_blank">
               <h2 className={styles["store"]}>{stockist.name}</h2>
             </a>
             <p className={styles["address"]}>{stockist.address}</p>
-          </>
+          </div>
         ))}
       </div>
     </motion.div>

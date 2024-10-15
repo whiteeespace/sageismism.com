@@ -18,7 +18,7 @@ const DraggableItem: React.FC<Props> = ({ index, totalNumber, src, maxX, maxY })
   const randomRotation = Math.random() * 180 * direction;
 
   return (
-    <div style={{ zIndex: 10 + index }} className={styles["image-container"]}>
+    <div style={{ zIndex: 1 + index }} className={styles["image-container"]}>
       <motion.div
         initial={{ scale: 0.1 }}
         animate={{
