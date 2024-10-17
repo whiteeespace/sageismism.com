@@ -1,8 +1,11 @@
+import { redirect } from "next/navigation";
+
 import Timer from "@/components/custom/Timer";
 
 import styles from "./styles.module.scss";
 
 const HomePage: React.FC = () => {
+  redirect("/shop");
   return (
     <div className={styles["container"]}>
       <Timer targetDate={new Date("2024-10-17T21:00:00")} className={styles["timer"]} />
