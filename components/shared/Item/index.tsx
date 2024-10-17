@@ -1,9 +1,11 @@
 "use client";
 
+import { Image, Money } from "@whiteeespace/core";
 import classNames from "classnames";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { useEffect, useRef } from "react";
 
+import { MoneyV2 } from "@/gql/graphql";
 import { Gender } from "@utils/types/gender";
 import { LabelType } from "@utils/types/label";
 import { ProductLabel } from "@utils/types/productLabel";
@@ -15,11 +17,22 @@ import styles from "./styles.module.scss";
 interface Props {
   src?: string;
   name: string;
+  productImage?: string;
   productLabel?: ProductLabel;
+  price?: MoneyV2;
+  availableForSale?: boolean;
   className?: string;
 }
 
-const Item: React.FC<Props> = ({ src, name, productLabel, className }) => {
+const Item: React.FC<Props> = ({
+  src,
+  name,
+  productLabel,
+  price,
+  availableForSale,
+  productImage,
+  className,
+}) => {
   const ref = useRef(null);
   const controls = useAnimation();
   const isInView = useInView(ref, { once: true });
@@ -31,7 +44,14 @@ const Item: React.FC<Props> = ({ src, name, productLabel, className }) => {
   }, [controls, isInView]);
 
   return (
-    <motion.div className={classNames(styles["item-container"], className)} transition={{ duration: 0.5 }}>
+    <motion.div
+      className={classNames(
+        styles["item-container"],
+        { [styles["item-container--sold-out"]]: !availableForSale },
+        className
+      )}
+      transition={{ duration: 0.5 }}
+    >
       {productLabel && (
         <>
           {(productLabel?.type === LabelType.TOP || productLabel?.type === LabelType.HEAD) && (
@@ -50,6 +70,7 @@ const Item: React.FC<Props> = ({ src, name, productLabel, className }) => {
                 [styles["arrow-up--woman--top"]]:
                   productLabel?.type === LabelType.TOP && productLabel?.gender === Gender.WOMAN,
               })}
+              style={{ translateY: productLabel.offset ? `${productLabel.offset}px` : "0px" }}
               src={`/shop/arrow-up.svg`}
               alt={"arrow"}
             />
@@ -60,6 +81,7 @@ const Item: React.FC<Props> = ({ src, name, productLabel, className }) => {
               animate={controls}
               transition={{ duration: 1, delay: 0.5 }}
               width={50}
+              style={{ translateY: productLabel.offset ? `${productLabel.offset}px` : "0px" }}
               className={classNames(styles["arrow-down"], {
                 [styles["arrow-down--man"]]: productLabel?.gender === Gender.MAN,
                 [styles["arrow-down--woman"]]: productLabel?.gender === Gender.WOMAN,
@@ -86,8 +108,11 @@ const Item: React.FC<Props> = ({ src, name, productLabel, className }) => {
               [styles["label--woman--bottom"]]:
                 productLabel?.type === LabelType.BOTTOM && productLabel?.gender === Gender.WOMAN,
             })}
+            style={{ translateY: productLabel.offset ? `${productLabel.offset}px` : "0px" }}
           >
-            {name}
+            <Image src={productImage} alt={"product-image"} className={styles["product-image"]} /> <br />
+            {name} <br />
+            {price && <Money data={price} withoutTrailingZeros className={styles["price"]} />}
           </motion.div>
         </>
       )}

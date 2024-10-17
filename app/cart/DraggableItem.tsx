@@ -15,7 +15,7 @@ interface Props {
 const DraggableItem: React.FC<Props> = ({ index, totalNumber, src, maxX, maxY }) => {
   const width = Math.min(maxX, maxY);
   const direction = Math.random() > 0.5 ? 1 : -1;
-  const randomRotation = Math.random() * 180 * direction;
+  const randomRotation = Math.random() * 30 * direction;
 
   return (
     <div style={{ zIndex: 1 + index }} className={styles["image-container"]}>

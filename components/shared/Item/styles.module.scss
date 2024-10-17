@@ -9,9 +9,13 @@
   padding: 20px;
   height: 100%;
 
+  &--sold-out {
+    opacity: 0.3;
+  }
+
   .label {
     position: absolute;
-    max-width: 90px;
+    max-width: 80px;
     font-size: 12px;
     font-weight: 500;
     line-height: 18px;
@@ -110,4 +114,13 @@
   .image {
     width: 100%;
   }
+}
+
+.price {
+  font-size: 11px;
+}
+
+.product-image {
+  width: 50px !important;
+  height: 50px;
 }

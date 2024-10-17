@@ -64,6 +64,10 @@ const CartPage = () => {
 
   const isEmpty = !lines?.length;
 
+  if (!lines) {
+    return <></>;
+  }
+
   if (isEmpty) {
     return (
       <motion.div

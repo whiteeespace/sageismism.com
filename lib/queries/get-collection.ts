@@ -11,6 +11,15 @@ export const getCollectionQuery = /* GraphQL */ `
           title
           availableForSale
           updatedAt
+          priceRange {
+            minVariantPrice {
+              amount
+              currencyCode
+            }
+          }
+          featuredImage {
+            url
+          }
           image: metafield(namespace: "custom", key: "store_image") {
             reference {
               ... on MediaImage {

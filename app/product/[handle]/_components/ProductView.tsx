@@ -50,6 +50,8 @@ export const ProductView: React.FC<Props> = ({
     return <></>;
   }
 
+  const featuredImage = product.featuredImage;
+
   return (
     <div className={styles["container"]}>
       <div className={styles["left-content"]}>
@@ -64,7 +66,7 @@ export const ProductView: React.FC<Props> = ({
         </div>
       </div>
       <div className={styles["main-content"]}>
-        {maleModelImages.length && femaleModelImages.length && (
+        {!!maleModelImages.length && !!femaleModelImages.length ? (
           <div className={styles["carousels-container"]}>
             <div className={styles["carousels"]}>
               <Model3D
@@ -82,8 +84,14 @@ export const ProductView: React.FC<Props> = ({
                 gender={Gender.WOMAN}
               />
             </div>
-            <div className={styles["carousel-text"]}>drag for 360° view</div>
+            <div className={styles["carousel-text"]}>drag models for 360° view</div>
           </div>
+        ) : (
+          <Image
+            src={featuredImage?.url}
+            alt={featuredImage?.altText ?? "product image"}
+            className={styles["product-image"]}
+          />
         )}
       </div>
       <div className={styles["right-content"]}>
@@ -91,7 +99,7 @@ export const ProductView: React.FC<Props> = ({
 
         <SizeRadioGroup
           aria-label={"sizes"}
-          defaultValue={selectedVariant?.id}
+          defaultValue={product.availableForSale ? selectedVariant?.id : undefined}
           onValueChange={(id: string) => {
             const variant = productVariants.find((variant) => variant?.id === id);
             if (variant) {

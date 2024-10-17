@@ -8,6 +8,10 @@ export const GET_PRODUCT = graphql(`
       description
       availableForSale
       descriptionHtml
+      featuredImage {
+        url
+        altText
+      }
       priceRange {
         maxVariantPrice {
           amount

@@ -37,6 +37,9 @@ const ShopPage = async () => {
                 }
                 name={product.title}
                 productLabel={labelInfo}
+                price={product.priceRange?.minVariantPrice}
+                availableForSale={product.availableForSale}
+                productImage={product.featuredImage?.url}
               />
             </Link>
           );
