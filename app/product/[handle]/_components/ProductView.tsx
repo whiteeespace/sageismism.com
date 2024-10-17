@@ -16,6 +16,7 @@ import { Image as ImageType, ProductVariant } from "@/gql/graphql";
 import { SizeRadio, SizeRadioGroup } from "@components/Sizes";
 import { Gender } from "@utils/types/gender";
 
+import SizeChartDialog from "./SizeChartDialog";
 import styles from "../styles.module.scss";
 
 interface ModelInfo {
@@ -24,12 +25,23 @@ interface ModelInfo {
   text: string;
 }
 
+export interface SizeChartData {
+  size: string;
+  chart: {
+    [key: string]: {
+      inch: number;
+      cm: number;
+    };
+  };
+}
+
 interface Props {
   productImages: Partial<ImageType>[];
   productVariants: ProductVariant[];
   maleModelImages: string[];
   femaleModelImages: string[];
   modelInfo: ModelInfo;
+  sizeChartData?: SizeChartData[];
 }
 
 export const ProductView: React.FC<Props> = ({
@@ -38,6 +50,7 @@ export const ProductView: React.FC<Props> = ({
   maleModelImages,
   femaleModelImages,
   modelInfo,
+  sizeChartData,
 }) => {
   const { product, selectedVariant, setSelectedVariant } = useProduct();
   const { id: cartId } = useCart();
@@ -113,7 +126,7 @@ export const ProductView: React.FC<Props> = ({
             </SizeRadio>
           ))}
         </SizeRadioGroup>
-
+        <SizeChartDialog sizeChartData={sizeChartData} />
         <AddToCartButton // @ts-expect-error typing issues with shopify
           as={Button}
           className={styles["button"]}
@@ -135,7 +148,7 @@ export const ProductView: React.FC<Props> = ({
             });
           }}
         >
-          {product.availableForSale ? "add to cart" : "sold out"}
+          {product.availableForSale ? "Add to cart" : "Sold out"}
         </AddToCartButton>
       </div>
       <div className={styles["product-images"]}>

@@ -47,5 +47,6 @@ export const getProduct = async (handle: string) => {
     maleModelImages,
     femaleModelImages,
     modelInfo,
+    sizeChart: result.data?.product?.sizeChart,
   };
 };

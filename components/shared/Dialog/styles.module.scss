@@ -1,0 +1,104 @@
+@use "lib/mixins/colors";
+
+.overlay {
+  background-color: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(15px);
+  position: fixed;
+  inset: 0;
+  animation: overlayShow 150ms ease-in-out;
+  cursor: pointer;
+  z-index: 1005;
+}
+
+.scroll {
+  display: flex;
+  overflow: auto;
+  position: absolute;
+  inset: 0;
+}
+
+.content {
+  background-color: white;
+  border-radius: 15px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90vw;
+  max-width: 700px;
+  max-height: 100vh;
+  height: min-content;
+  animation: contentShow 150ms ease-in-out;
+  z-index: 1006;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+@keyframes overlayShow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes contentShow {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -48%) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: colors.$dark-grey;
+  padding: 0;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+  padding: 24px;
+}
+
+.buttons-group {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  justify-content: flex-end;
+  padding: 24px;
+
+  .button {
+    width: 96px;
+  }
+}
+
+.content-body {
+  padding: 0 24px;
+  max-height: 60lvh;
+  margin-bottom: 12px;
+  overflow-y: scroll;
+}
+
+.description {
+  visibility: hidden;
+  height: 0px;
+  margin: 0;
+}

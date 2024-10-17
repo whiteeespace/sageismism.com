@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
               stockists
             </Link>
             <Link className={styles["link"]} href="/policies">
-              terms & conditions
+              customer care
             </Link>
           </>
         )}

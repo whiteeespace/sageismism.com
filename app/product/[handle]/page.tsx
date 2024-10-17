@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { Product, WithContext } from "schema-dts";
 
 import { ProductProvider } from "./_components/ProductProvider";
-import { ProductView } from "./_components/ProductView";
+import { ProductView, SizeChartData } from "./_components/ProductView";
 import { getProduct } from "./action";
 
 export async function generateMetadata({ params }, parent: ResolvingMetadata): Promise<Metadata> {
@@ -36,8 +36,15 @@ const ProductPage = async ({ params }) => {
     return redirect("/shop");
   }
 
-  const { product, productImages, productVariants, maleModelImages, femaleModelImages, modelInfo } =
-    await getProduct(handle);
+  const {
+    product,
+    productImages,
+    productVariants,
+    maleModelImages,
+    femaleModelImages,
+    modelInfo,
+    sizeChart,
+  } = await getProduct(handle);
 
   if (!product) {
     return <></>;
@@ -65,6 +72,8 @@ const ProductPage = async ({ params }) => {
     },
   };
 
+  const sizeChartData: SizeChartData[] = sizeChart ? JSON.parse(sizeChart.value) : null;
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
@@ -75,6 +84,7 @@ const ProductPage = async ({ params }) => {
           maleModelImages={maleModelImages}
           femaleModelImages={femaleModelImages}
           modelInfo={modelInfo}
+          sizeChartData={sizeChartData}
         />
       </ProductProvider>
     </>

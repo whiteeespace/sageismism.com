@@ -10,6 +10,7 @@ import {
   Money,
 } from "@whiteeespace/core";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
@@ -110,6 +111,9 @@ const CartPage = () => {
         className={styles["cart-items"]}
       >
         <div className={styles["button-container"]}>
+          <Link className={styles["link"]} href="/policies">
+            customer care
+          </Link>
           <CartCheckoutButton // @ts-expect-error typing issues with shopify
             as={Button}
             variant="primary"
@@ -143,9 +147,7 @@ const CartPage = () => {
           />
         </div>
       </motion.div>
-      <p className={styles["free-shipping"]}>
-        * free shipping in Canada on orders over $69 and US on orders over $99
-      </p>
+      <p className={styles["free-shipping"]}>* free shipping in Canada and US on orders over $75</p>
     </div>
   );
 };

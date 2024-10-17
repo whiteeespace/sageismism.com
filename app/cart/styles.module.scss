@@ -106,7 +106,21 @@
     column-gap: 16px;
     row-gap: 0px;
     flex-wrap: wrap;
+    align-items: center;
     justify-content: flex-end;
+
+    .link {
+      font-size: 13px;
+      font-weight: 500;
+      color: colors.$black;
+      text-decoration: underline;
+      cursor: pointer;
+      margin: 0;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
 
     button {
       text-transform: capitalize;
