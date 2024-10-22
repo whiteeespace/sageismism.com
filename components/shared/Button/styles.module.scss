@@ -53,6 +53,15 @@
     }
   }
 
+  &--tertiary {
+    background: transparent;
+    border: 2px solid colors.$black;
+    padding: 4px 12px 2px;
+    font-size: 11px;
+    font-weight: 700;
+    height: min-content;
+  }
+
   &--link {
     background: none;
     border: none;
