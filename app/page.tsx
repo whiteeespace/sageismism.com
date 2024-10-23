@@ -13,7 +13,7 @@ const HomePage: React.FC = () => {
         Your browser does not support the video tag.
       </video>
       <div className={styles["text-container"]}>
-        <p>&quot;New Horizon&quot; collection now live.</p>
+        <p className={styles["text"]}>&quot;New Horizon&quot; collection now live.</p>
         <Link href="/shop">
           <Button variant="tertiary">Shop Now</Button>
         </Link>
