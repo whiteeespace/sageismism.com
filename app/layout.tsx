@@ -1,5 +1,6 @@
 import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
+import Script from "next/script";
 import { PropsWithChildren } from "react";
 
 import Layout from "@/components/custom/Layout";
@@ -25,6 +26,7 @@ const RootLayout: React.FC<PropsWithChildren> = ({ children }) => {
       <html lang="en" suppressHydrationWarning>
         <body>
           <Layout>{children}</Layout>
+          <Script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/SN7QNR/klaviyo.js" />
           <GoogleAnalytics gaId="G-F74KBNL4NN" />
           <FacebookPixel />
           <TikTokPixel />
