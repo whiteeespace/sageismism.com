@@ -8,12 +8,14 @@ const HomePage: React.FC = () => {
   return (
     <div className={styles["container"]}>
       {/* <Timer targetDate={new Date("2024-10-17T21:00:00")} className={styles["timer"]} /> */}
-      <video autoPlay muted loop playsInline poster={"/fw24/poster.png"} className={styles["video"]}>
-        <source src="/fw24/360.mp4" type="video/mp4" />
-      </video>
+      <Link href="/shop">
+        <video autoPlay muted loop playsInline poster={"/fw24/poster-v2.png"} className={styles["video"]}>
+          <source src="/fw24/360-v2.mp4" type="video/mp4" />
+        </video>
+      </Link>
 
       <div className={styles["text-container"]}>
-        <p className={styles["text"]}>&quot;New Horizon&quot; collection now live.</p>
+        <p className={styles["text"]}>&quot;Cozy Year End&quot; capsule available dec. 17th.</p>
         <Link href="/shop">
           <Button variant="tertiary">Shop Now</Button>
         </Link>
