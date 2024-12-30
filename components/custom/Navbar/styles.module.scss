@@ -16,8 +16,8 @@
 
   .logo {
     width: auto;
-    height: 160px;
-    margin: 0 16px;
+    height: 148px;
+    padding: 16px 32px;
   }
 
   .menu-container {
@@ -70,9 +70,10 @@
     }
 
     img {
-      width: 80%;
-      margin: 8px 24px;
+      width: 124px;
+      margin: 20px 24px;
       height: auto;
+      mix-blend-mode: difference;
     }
   }
 

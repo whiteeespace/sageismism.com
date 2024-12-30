@@ -4,8 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
-import loadingLogo from "./images/loading-logo.png";
-import logo from "./images/logo.gif";
+import logo from "./images/sage-logo.png";
 import styles from "./styles.module.scss";
 
 const Logo: React.FC = () => {
@@ -21,7 +20,7 @@ const Logo: React.FC = () => {
           src={logo}
           alt={"logo"}
           placeholder={"blur"}
-          blurDataURL={loadingLogo.src}
+          blurDataURL={logo.blurDataURL}
           priority
           className={styles["logo"]}
         />

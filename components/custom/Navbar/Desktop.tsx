@@ -1,11 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
 
 import Button from "@/components/shared/Button";
 
 import { MenuItem } from ".";
-import loadingLogo from "./images/loading-logo.png";
-import logo from "./images/logo.gif";
+import Logo from "./Logo";
 import styles from "./styles.module.scss";
 import Cart from "../Cart";
 
@@ -16,16 +14,7 @@ interface Props {
 export const DesktopNavbar: React.FC<Props> = ({ menuItems }) => {
   return (
     <nav className={styles["header-desktop"]}>
-      <Link href={"/"}>
-        <Image
-          src={logo}
-          alt={"logo"}
-          placeholder={"blur"}
-          blurDataURL={loadingLogo.src}
-          priority
-          className={styles["logo"]}
-        />
-      </Link>
+      <Logo />
       <div className={styles["menu-container"]}>
         {menuItems.map((menuItem) => (
           <Link href={menuItem.to} key={menuItem.title}>
