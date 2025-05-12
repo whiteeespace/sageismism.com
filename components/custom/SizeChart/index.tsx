@@ -28,7 +28,7 @@ export const SizeChart: React.FC<SizeChartProps> = ({ sizeChartData }) => {
           <tr>
             <th>Size</th>
             {Object.keys(sizeChartData[0].chart).map((key) => (
-              <th key={key}>{key}</th>
+              <th key={key}>{key.split("_").join(" ")}</th>
             ))}
           </tr>
         </thead>
