@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import classNames from "classnames";
 import { Metadata, ResolvingMetadata } from "next";
 import Link from "next/link";

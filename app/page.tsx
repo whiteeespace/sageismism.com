@@ -15,7 +15,7 @@ const HomePage: React.FC = () => {
       </Link>
 
       <div className={styles["text-container"]}>
-        <p className={styles["text"]}>&quot;Slightly Flared Pattern Denim&quot; now live.</p>
+        <p className={styles["text"]}>&quot;002: Flared Painter Denim&quot; now live.</p>
         <Link href="/shop">
           <Button variant="tertiary">Shop Now</Button>
         </Link>

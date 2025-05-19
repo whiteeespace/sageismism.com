@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { Metadata, ResolvingMetadata } from "next";
 import { redirect } from "next/navigation";
 import { Product, WithContext } from "schema-dts";
